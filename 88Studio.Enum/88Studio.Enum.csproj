@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="UserStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Backup\BELGIUM\trunk\code\BGP.Web\BGP.Utils.Common\BGP.Utils.Common.csproj">
+      <Project>{7b686c98-a81c-4975-ab74-7c4e5460503a}</Project>
+      <Name>BGP.Utils.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\88Studio.Resource\88Studio.Resource.csproj">
+      <Project>{e6924dfc-a24f-4836-9c6d-32c7e41b6c69}</Project>
+      <Name>88Studio.Resource</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
