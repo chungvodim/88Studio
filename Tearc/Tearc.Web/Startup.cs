@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Tearc.Web.Data;
 using Tearc.Web.Models;
 using Tearc.Web.Services;
+using Tearc.Repo;
+using Tearc.Data;
 
 namespace Tearc.Web
 {
@@ -40,14 +41,22 @@ namespace Tearc.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MainConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AddEditUser", policy => {
+                    policy.RequireClaim("Add User", "Add User");
+                    policy.RequireClaim("Edit User", "Edit User");
+                });
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
