@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tearc.Data\Tearc.Data.csproj" />
+    <ProjectReference Include="..\Tearc.Repository\Tearc.Repository.csproj" />
+  </ItemGroup>
 
 </Project>
