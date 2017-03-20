@@ -8,7 +8,7 @@ namespace Tearc.Data
 {
     public class UserMap
     {
-        public UserMap(EntityTypeBuilder<User> entityBuilder)
+        public UserMap(EntityTypeBuilder<ApplicationUser > entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.Email).IsRequired();

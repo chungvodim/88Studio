@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Web", "Tearc.Web\Tearc.Web.csproj", "{54F8162C-FCAA-4F77-8B4E-1989847081AF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.WebAPI", "Tearc.WebAPI\Tearc.WebAPI.csproj", "{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Repository", "Tearc.Repository\Tearc.Repository.csproj", "{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4}"
@@ -17,16 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Core", "Tearc.Core\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Data", "Tearc.Data\Tearc.Data.csproj", "{F39ED974-2ABC-49C8-93DE-C54A26D08135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Web", "Tearc.Web\Tearc.Web.csproj", "{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{54F8162C-FCAA-4F77-8B4E-1989847081AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54F8162C-FCAA-4F77-8B4E-1989847081AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54F8162C-FCAA-4F77-8B4E-1989847081AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54F8162C-FCAA-4F77-8B4E-1989847081AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{F39ED974-2ABC-49C8-93DE-C54A26D08135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F39ED974-2ABC-49C8-93DE-C54A26D08135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F39ED974-2ABC-49C8-93DE-C54A26D08135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

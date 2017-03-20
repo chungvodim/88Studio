@@ -9,11 +9,11 @@ namespace Tearc.Repo
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly ApplicationContext context;
+        private readonly ApplicationDbContext context;
         private DbSet<T> entities;
         string errorMessage = string.Empty;
 
-        public Repository(ApplicationContext context)
+        public Repository(ApplicationDbContext context)
         {
             this.context = context;
             entities = context.Set<T>();

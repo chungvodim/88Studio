@@ -9,30 +9,30 @@ namespace Tearc.Service
 {
     public class UserService: IUserService
     {
-        private IRepository<User> userRepository;
+        private IRepository<ApplicationUser > userRepository;
         private IRepository<UserProfile> userProfileRepository;
 
-        public UserService(IRepository<User> userRepository, IRepository<UserProfile> userProfileRepository)
+        public UserService(IRepository<ApplicationUser > userRepository, IRepository<UserProfile> userProfileRepository)
         {
             this.userRepository = userRepository;
             this.userProfileRepository = userProfileRepository;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<ApplicationUser > GetUsers()
         {
             return userRepository.GetAll();
         }
 
-        public User GetUser(long id)
+        public ApplicationUser  GetUser(long id)
         {
             return userRepository.Get(id);
         }
 
-        public void InsertUser(User user)
+        public void InsertUser(ApplicationUser  user)
         {
             userRepository.Insert(user);
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(ApplicationUser  user)
         {
             userRepository.Update(user);
         }
@@ -41,7 +41,7 @@ namespace Tearc.Service
         {            
             UserProfile userProfile = userProfileRepository.Get(id);
             userProfileRepository.Remove(userProfile);
-            User user = GetUser(id);
+            ApplicationUser  user = GetUser(id);
             userRepository.Remove(user);
             userRepository.SaveChanges();
         }

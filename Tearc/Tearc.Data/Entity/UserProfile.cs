@@ -10,6 +10,6 @@ namespace Tearc.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
-        public virtual User User { get; set; }
+        public virtual ApplicationUser  User { get; set; }
     }
 }

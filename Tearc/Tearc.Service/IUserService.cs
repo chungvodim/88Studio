@@ -8,10 +8,10 @@ namespace Tearc.Service
 {
   public  interface IUserService
     {
-        IEnumerable<User> GetUsers();
-        User GetUser(long id);
-        void InsertUser(User user);
-        void UpdateUser(User user);
+        IEnumerable<ApplicationUser > GetUsers();
+        ApplicationUser  GetUser(long id);
+        void InsertUser(ApplicationUser  user);
+        void UpdateUser(ApplicationUser  user);
         void DeleteUser(long id);
     }
 }
