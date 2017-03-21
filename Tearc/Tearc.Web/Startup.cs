@@ -48,6 +48,15 @@ namespace Tearc.Web
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            // Add identity claim based.
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AddEditUser", policy => {
+                    policy.RequireClaim("Add User", "Add User");
+                    policy.RequireClaim("Edit User", "Edit User");
+                });
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
