@@ -78,7 +78,7 @@ namespace Tearc.Web.Controllers
             }
             return View(model);
         }
-        [Authorize(Policy = "AddEditUser")]
+        //[Authorize(Policy = "AddEditUser")]
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {

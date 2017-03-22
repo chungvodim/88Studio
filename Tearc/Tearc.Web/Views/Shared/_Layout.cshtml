@@ -70,5 +70,21 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(document).ajaxError(function (xhr, props) {
+               
+                if (props.status == 403) {
+                    window.location = "@Url.Action("AccessDenied", "Account")";
+                } else if (props.status == 401) {
+                    window.location = "@Url.Action("Login", "Account")";
+                }
+            });
+    });
+    </script>
+
 </body>
 </html>
