@@ -11,7 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Tearc.Web.Services;
 using Tearc.Data;
-using Tearc.Repo;
+using Tearc.Repository;
+using Tearc.Service;
+using Tearc.Core.Interfaces;
+using Tearc.Core.Implementations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tearc.Web
 {
@@ -21,7 +25,7 @@ namespace Tearc.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -46,8 +50,12 @@ namespace Tearc.Web
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
-            services.AddMvc();
+            // reject all requests that are not coming over https
+            services.AddMvc(options =>
+            {
+                options.SslPort = 44321;
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
             // Add identity claim based.
             services.AddAuthorization(options =>
             {
@@ -59,8 +67,18 @@ namespace Tearc.Web
             });
 
             // Add application services.
+            // Transient: A new instance of the type is used every time the type is requested.
+            // Scoped: A new instance of the type is created the first time it’s requested within a given HTTP request, and then re - used for all subsequent types resolved during that HTTP request.
+            // Singleton: A single instance of the type is created once, and used by all subsequent requests for that type.
+
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserProfileService, UserProfileService>();
+
+            services.AddSingleton<IDateTime, MachineClockDateTime>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +103,11 @@ namespace Tearc.Web
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
 
             app.UseMvc(routes =>
             {

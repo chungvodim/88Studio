@@ -123,7 +123,7 @@ namespace Tearc.Web.Controllers
                     applicationUser.Name = model.Name;
                     applicationUser.Email = model.Email;
                     var claims = await userManager.GetClaimsAsync(applicationUser);
-                    List<SelectListItem> userClaims = model.UserClaims.Where(c => c.Selected && claims.Any(u => u.Value != c.Value)).ToList();
+                    List<SelectListItem> userClaims = model.UserClaims.Where(c => c.Selected && (!claims.Any() || claims.Any(u => u.Value != c.Value))).ToList();
                     foreach (var claim in userClaims)
                     {
                         applicationUser.Claims.Add(new IdentityUserClaim<string>

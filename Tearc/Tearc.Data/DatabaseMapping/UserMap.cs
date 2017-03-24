@@ -12,7 +12,8 @@ namespace Tearc.Data
         {
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.Email).IsRequired();
-            entityBuilder.Property(t => t.PasswordHash).IsRequired();
+            //entityBuilder.Property(t => t.PasswordHash).IsRequired();
+            entityBuilder.Property(t => t.PasswordHash);
             entityBuilder.Property(t => t.Email).IsRequired();
         }
     }

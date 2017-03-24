@@ -1,5 +1,5 @@
 ﻿using Tearc.Data;
-using Tearc.Repo;
+using Tearc.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

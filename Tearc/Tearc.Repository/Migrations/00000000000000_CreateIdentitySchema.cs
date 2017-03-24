@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Tearc.Repo.Migrations
+namespace Tearc.Repository.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

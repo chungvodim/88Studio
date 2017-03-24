@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Tearc.Repo;
+using Tearc.Repository;
 
-namespace Tearc.Repo.Migrations
+namespace Tearc.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -151,8 +151,7 @@ namespace Tearc.Repo.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired();
+                    b.Property<string>("PasswordHash");
 
                     b.Property<string>("PhoneNumber");
 

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Tearc.Repo;
+using Tearc.Repository;
 
-namespace Tearc.Repo.Migrations
+namespace Tearc.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20170321190010_CreateNewTable")]
