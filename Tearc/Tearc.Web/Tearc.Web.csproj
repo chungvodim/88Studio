@@ -9,6 +9,9 @@
     <UserSecretsId>aspnet-Tearc.Web-6047bb21-77a7-4677-93c9-a049f2213707</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />
@@ -37,5 +40,8 @@
     <ProjectReference Include="..\Tearc.Repository\Tearc.Repository.csproj" />
     <ProjectReference Include="..\Tearc.Resource\Tearc.Resource.csproj" />
     <ProjectReference Include="..\Tearc.Service\Tearc.Service.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 </Project>
