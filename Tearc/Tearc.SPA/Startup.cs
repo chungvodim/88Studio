@@ -35,7 +35,9 @@ namespace Tearc.SPA
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
             services.AddMvc();
+            // Add Localization if you want your site support multiple languages.
             services.AddLocalization();
 
             // SignalR and Memory Cache are required by dotNetify.

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Test", "Tearc.Test\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.SPA", "Tearc.SPA\Tearc.SPA.csproj", "{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.ViewModels", "Tearc.ViewModels\Tearc.ViewModels.csproj", "{309B05C0-350C-49BA-8CD2-7C49971F80A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
