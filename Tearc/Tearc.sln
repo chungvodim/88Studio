@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.XTest", "Tearc.XTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Test", "Tearc.Test\Tearc.Test.csproj", "{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.SPA", "Tearc.SPA\Tearc.SPA.csproj", "{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
