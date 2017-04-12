@@ -18,7 +18,7 @@ namespace ViewModels
 
         public string Slogan
         {
-            get { return Get<string>() ?? "Hello"; }
+            get { return this.LocalizedStrings["Slogan"] ?? ""; }
         }
 
         /// <summary>
