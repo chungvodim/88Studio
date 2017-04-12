@@ -22,6 +22,7 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BuildWebCompiler" Version="1.11.326" />
     <PackageReference Include="DotNetify.Core" Version="2.1.0-pre" />
     <PackageReference Include="DotNetify.SignalR" Version="2.1.0-pre" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

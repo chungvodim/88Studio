@@ -84,7 +84,7 @@ var PageHeader = React.createClass({
         return (
             <div class="well">
                 <h1><span class="circle"></span>&nbsp;Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
-                <p>{this.state.Slogan}</p>
+                <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
             </div>
         );
     }

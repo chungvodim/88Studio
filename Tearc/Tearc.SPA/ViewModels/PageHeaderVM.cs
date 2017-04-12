@@ -16,11 +16,6 @@ namespace ViewModels
         private readonly IStringLocalizer _localizer;
         protected override IStringLocalizer localizerImpl { get { return _localizer; } }
 
-        public string Slogan
-        {
-            get { return this.LocalizedStrings["Slogan"] ?? ""; }
-        }
-
         /// <summary>
         /// Constructor.
         /// </summary>
