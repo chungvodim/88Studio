@@ -67,7 +67,35 @@ var Index = React.createClass({
    }
 });
 
+var PageHeader = React.createClass({
+
+    getInitialState() {
+        // Connect this component to the back-end view model.
+        this.vm = dotnetify.react.connect("PageHeaderVM", this);
+
+        // This component's JSX was loaded along with the VM's initial state for faster rendering.
+        var state = window.vmStates.PageHeaderVM || {};
+        return state;
+    },
+    componentWillUnmount() {
+        this.vm.$destroy();
+    },
+    render() {
+        return (
+            <div class="well">
+                <h1><span class="circle"></span>&nbsp;Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
+                <p>{this.state.Slogan}</p>
+            </div>
+        );
+    }
+});
+
 ReactDOM.render(
   <Index />,
   document.querySelector("#NavMenu")
+);
+
+ReactDOM.render(
+    <PageHeader />,
+    document.querySelector("#pageHeader")
 );

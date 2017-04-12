@@ -114,5 +114,44 @@ var Index = React.createClass({
    }
 });
 
+var PageHeader = React.createClass({
+    displayName: "PageHeader",
+    getInitialState: function getInitialState() {
+        // Connect this component to the back-end view model.
+        this.vm = dotnetify.react.connect("PageHeaderVM", this);
+
+        // This component's JSX was loaded along with the VM's initial state for faster rendering.
+        var state = window.vmStates.PageHeaderVM || {};
+        return state;
+    },
+    componentWillUnmount: function componentWillUnmount() {
+        this.vm.$destroy();
+    },
+    render: function render() {
+        return React.createElement(
+            "div",
+            { "class": "well" },
+            React.createElement(
+                "h1",
+                null,
+                React.createElement("span", { "class": "circle" }),
+                "\xA0Tearc + ",
+                React.createElement(
+                    "span",
+                    null,
+                    React.createElement("img", { src: "/images/reactLogo.svg", width: "28" }),
+                    "Architect"
+                )
+            ),
+            React.createElement(
+                "p",
+                null,
+                this.state.Slogan
+            )
+        );
+    }
+});
+
 ReactDOM.render(React.createElement(Index, null), document.querySelector("#NavMenu"));
+ReactDOM.render(React.createElement(PageHeader, null), document.querySelector("#pageHeader"));
 

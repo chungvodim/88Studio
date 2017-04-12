@@ -117,49 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Back" xml:space="preserve">
-    <value>Trở về</value>
+  <data name="Header" xml:space="preserve">
+    <value>Header</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Hủy</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Xác nhận</value>
-  </data>
-  <data name="EditLabel" xml:space="preserve">
-    <value>Modifier</value>
-  </data>
-  <data name="Finish" xml:space="preserve">
-    <value>Terminer</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Tên</value>
-  </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Họ</value>
-  </data>
-  <data name="Manager" xml:space="preserve">
-    <value>Giám đốc</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Tên</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>Tới</value>
-  </data>
-  <data name="NoOne" xml:space="preserve">
-    <value>Không ai</value>
-  </data>
-  <data name="ReportTo" xml:space="preserve">
-    <value>Báo cáo tới</value>
-  </data>
-  <data name="ReportToHintText" xml:space="preserve">
-    <value>Nhập tên giám đốc ở đây</value>
-  </data>
-  <data name="ReportToNotFound" xml:space="preserve">
-    <value>Không ai có tên như trên</value>
-  </data>
-  <data name="SearchLabel" xml:space="preserve">
-    <value>Nhập tên</value>
+  <data name="Slogan" xml:space="preserve">
+    <value>We build, we care</value>
   </data>
 </root>

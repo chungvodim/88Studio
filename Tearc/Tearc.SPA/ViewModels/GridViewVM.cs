@@ -11,10 +11,11 @@ namespace ViewModels
    /// <summary>
    /// This view model demonstrates how to build rich web applications with less efforts and less code complexity.
    /// </summary>
-   public class GridViewVM : BaseVM
-   {
+   public class GridViewVM : TearcBaseVM
+    {
       private readonly EmployeeService _employeeService;
       private readonly IStringLocalizer _localizer;
+      protected override IStringLocalizer localizerImpl { get { return _localizer; } }
       private readonly IEnumerable<object> _emptyList = new List<object>();
       private readonly EmployeeDetails _emptyDetails = new EmployeeDetails();
       private readonly int _recordsPerPage = 10;
@@ -159,28 +160,6 @@ namespace ViewModels
 
       public string ReportToError => !string.IsNullOrEmpty(ReportToSearch)
          && ReportToSearchResult.Count() == 0 ? nameof(GridViewResource.ReportToNotFound) : "";
-
-
-      /// <summary>
-      /// Receives culture code, and forces all localized strings to update and sent to the client.
-      /// </summary>
-      public string CultureCode
-      {
-         get { return Get<string>(); }
-         set
-         {
-            Set(value);
-            Changed(nameof(LocalizedStrings));
-         }
-      }
-
-      public Dictionary<string, string> LocalizedStrings => Localizer.GetAllStrings().ToDictionary(i => i.Name, i => i.Value);
-
-      /// <summary>
-      /// New ASP.NET abstraction to help manage string localization. It pulls the strings from the .resx file.  
-      /// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization.
-      /// </summary>
-      private IStringLocalizer Localizer => string.IsNullOrEmpty(CultureCode) || CultureCode == "en-US" ? _localizer : _localizer.WithCulture(new CultureInfo(CultureCode));
 
       public int[] Pagination
       {
