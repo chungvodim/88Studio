@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tearc.Core\Tearc.Core.csproj" />
-    <ProjectReference Include="..\Tearc.Resource\Tearc.Resource.csproj" />
   </ItemGroup>
 
 </Project>

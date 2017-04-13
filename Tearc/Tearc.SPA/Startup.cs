@@ -81,8 +81,8 @@ namespace Tearc.SPA
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            //var physicalProvider = env.ContentRootFileProvider;
-            //loggerFactory.AddLog4Net(physicalProvider.GetFileInfo("log4net.xml").PhysicalPath);
+            var physicalProvider = env.ContentRootFileProvider;
+            loggerFactory.AddLog4Net(physicalProvider.GetFileInfo("log4net.xml").PhysicalPath);
 
             if (env.IsDevelopment())
             {

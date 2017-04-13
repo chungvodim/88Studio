@@ -38,3 +38,69 @@
 2017-04-13 16:15:24,360 [11] INFO  Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - Sending file. Request path: '/css/demo.css'. Physical path: 'D:\WorkSpace\88Studio\Tearc\Tearc.SPA\wwwroot\css\demo.css'
 2017-04-13 16:15:24,379 [10] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429MBC8JS3" completed keep alive response.
 2017-04-13 16:15:24,383 [10] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 25.402ms 200 text/css
+2017-04-13 16:22:25,992 [1] DEBUG Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Hosting starting
+2017-04-13 16:22:26,078 [1] DEBUG Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Hosting started
+2017-04-13 16:22:26,131 [KestrelThread - libuv] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MT" started.
+2017-04-13 16:22:26,198 [4] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/  
+2017-04-13 16:22:26,245 [4] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path / does not match a supported file type
+2017-04-13 16:22:26,392 [4] DEBUG Microsoft.AspNetCore.Routing.Tree.TreeRouter [(null)] - Request successfully matched the route with name '(null)' and template '{*id}'.
+2017-04-13 16:22:26,455 [4] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action Tearc.SPA.Controllers.HomeController.Index (Tearc.SPA)
+2017-04-13 16:22:26,485 [4] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging
+2017-04-13 16:22:26,485 [4] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging1
+2017-04-13 16:22:26,569 [4] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action method Tearc.SPA.Controllers.HomeController.Index (Tearc.SPA) with arguments () - ModelState is Valid
+2017-04-13 16:22:26,571 [4] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action method Tearc.SPA.Controllers.HomeController.Index (Tearc.SPA), returned result Microsoft.AspNetCore.Mvc.FileStreamResult.
+2017-04-13 16:22:26,587 [4] INFO  Microsoft.AspNetCore.Mvc.Internal.VirtualFileResultExecutor [(null)] - Executing FileResult, sending file as 
+2017-04-13 16:22:26,634 [3] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action Tearc.SPA.Controllers.HomeController.Index (Tearc.SPA) in 177.982ms
+2017-04-13 16:22:26,649 [KestrelThread - libuv] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MU" started.
+2017-04-13 16:22:26,651 [4] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/module/get/Index/IndexVM  
+2017-04-13 16:22:26,651 [4] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path /module/get/Index/IndexVM does not match a supported file type
+2017-04-13 16:22:26,651 [3] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MT" completed keep alive response.
+2017-04-13 16:22:26,656 [4] DEBUG Microsoft.AspNetCore.Routing.Tree.TreeRouter [(null)] - Request successfully matched the route with name '(null)' and template 'module/get/{view}/{vm?}'.
+2017-04-13 16:22:26,664 [3] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 476.7783ms 200 text/html
+2017-04-13 16:22:26,664 [4] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA)
+2017-04-13 16:22:26,665 [4] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging
+2017-04-13 16:22:26,665 [4] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging1
+2017-04-13 16:22:26,683 [4] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action method Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA) with arguments (Index, IndexVM) - ModelState is Valid
+2017-04-13 16:22:26,832 [4] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action method Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA), returned result Microsoft.AspNetCore.Mvc.ContentResult.
+2017-04-13 16:22:26,848 [4] INFO  Microsoft.AspNetCore.Mvc.Internal.ContentResultExecutor [(null)] - Executing ContentResult with HTTP Response ContentType of text/js
+2017-04-13 16:22:26,856 [4] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA) in 190.2673ms
+2017-04-13 16:22:26,856 [4] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MU" completed keep alive response.
+2017-04-13 16:22:26,856 [4] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 204.9383ms 200 text/js
+2017-04-13 16:22:26,880 [12] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/signalr/negotiate?clientProtocol=1.5&connectionData=%5B%7B%22name%22%3A%22dotnetifyhub%22%7D%5D&_=1492075346694 application/json; charset=UTF-8 
+2017-04-13 16:22:26,880 [12] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path /signalr/negotiate does not match a supported file type
+2017-04-13 16:22:26,893 [11] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/favicon.ico  
+2017-04-13 16:22:26,934 [12] INFO  Microsoft.Extensions.DependencyInjection.DataProtectionServices [(null)] - User profile is available. Using 'C:\Users\MSI\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2017-04-13 16:22:27,025 [12] DEBUG Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository [(null)] - Reading data from file 'C:\Users\MSI\AppData\Local\ASP.NET\DataProtection-Keys\key-50b615ed-d224-4b90-83ba-461c794e0b3c.xml'.
+2017-04-13 16:22:27,026 [12] DEBUG Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository [(null)] - Reading data from file 'C:\Users\MSI\AppData\Local\ASP.NET\DataProtection-Keys\key-6d9e6b63-bc86-4429-a90b-139316057dc8.xml'.
+2017-04-13 16:22:27,029 [12] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager [(null)] - Found key {50b615ed-d224-4b90-83ba-461c794e0b3c}.
+2017-04-13 16:22:27,030 [12] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager [(null)] - Found key {6d9e6b63-bc86-4429-a90b-139316057dc8}.
+2017-04-13 16:22:27,037 [12] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver [(null)] - Considering key {6d9e6b63-bc86-4429-a90b-139316057dc8} with expiration date 2017-06-20 02:08:52Z as default key.
+2017-04-13 16:22:27,052 [12] DEBUG Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor [(null)] - Decrypting secret element using Windows DPAPI.
+2017-04-13 16:22:27,067 [12] DEBUG Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorDescriptor [(null)] - Opening CNG algorithm 'AES' from provider '(null)' with chaining mode CBC.
+2017-04-13 16:22:27,072 [12] DEBUG Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorDescriptor [(null)] - Opening CNG algorithm 'SHA256' from provider '(null)' with HMAC.
+2017-04-13 16:22:27,081 [12] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider [(null)] - Using key {6d9e6b63-bc86-4429-a90b-139316057dc8} as the default key.
+2017-04-13 16:22:27,084 [12] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector [(null)] - Performing protect operation to key {6d9e6b63-bc86-4429-a90b-139316057dc8} with purposes ('D:\WorkSpace\88Studio\Tearc\Tearc.SPA', 'SignalR.ConnectionToken').
+2017-04-13 16:22:27,109 [12] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MT" completed keep alive response.
+2017-04-13 16:22:27,109 [12] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 229.4476ms 200 application/json; charset=UTF-8
+2017-04-13 16:22:27,111 [3] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/signalr/connect?transport=webSockets&clientProtocol=1.5&connectionToken=CfDJ8GNrnm2GvClEqQsTkxYFfciP8638Xi3uth7NDX1WWf40mOQqt4Bj4RBl8GVDegqSsCnyOk%2BiNCmP0HAVgBDZ14Fj9vkY9%2Bv3QxigbYgfCbJ8J4se34eOvOqgXNClCEzzwKA3Yvt%2BXUhxbJvyD6sl2PIYurNy3a6kSDCSk0iSbr2H&connectionData=%5B%7B%22name%22%3A%22dotnetifyhub%22%7D%5D&tid=4  
+2017-04-13 16:22:27,111 [3] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path /signalr/connect does not match a supported file type
+2017-04-13 16:22:27,128 [3] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector [(null)] - Performing unprotect operation to key {6d9e6b63-bc86-4429-a90b-139316057dc8} with purposes ('D:\WorkSpace\88Studio\Tearc\Tearc.SPA', 'SignalR.ConnectionToken').
+2017-04-13 16:22:27,189 [3] INFO  Microsoft.AspNetCore.SignalR.Transports.TransportHeartbeat [(null)] - Connection ad245603-bed1-451b-b7fb-154cc62785ce is New.
+2017-04-13 16:22:27,240 [13] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/signalr/start?transport=webSockets&clientProtocol=1.5&connectionToken=CfDJ8GNrnm2GvClEqQsTkxYFfciP8638Xi3uth7NDX1WWf40mOQqt4Bj4RBl8GVDegqSsCnyOk%2BiNCmP0HAVgBDZ14Fj9vkY9%2Bv3QxigbYgfCbJ8J4se34eOvOqgXNClCEzzwKA3Yvt%2BXUhxbJvyD6sl2PIYurNy3a6kSDCSk0iSbr2H&connectionData=%5B%7B%22name%22%3A%22dotnetifyhub%22%7D%5D&_=1492075346695 application/json; charset=UTF-8 
+2017-04-13 16:22:27,241 [13] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path /signalr/start does not match a supported file type
+2017-04-13 16:22:27,241 [13] DEBUG Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector [(null)] - Performing unprotect operation to key {6d9e6b63-bc86-4429-a90b-139316057dc8} with purposes ('D:\WorkSpace\88Studio\Tearc\Tearc.SPA', 'SignalR.ConnectionToken').
+2017-04-13 16:22:27,252 [12] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MT" completed keep alive response.
+2017-04-13 16:22:27,252 [12] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 11.5671ms 200 application/json; charset=UTF-8
+2017-04-13 16:22:27,356 [3] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request starting HTTP/1.1 GET http://localhost:1592/module/get/HelloWorld/HelloWorldVM?_=1492075346696  
+2017-04-13 16:22:27,357 [3] DEBUG Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware [(null)] - The request path /module/get/HelloWorld/HelloWorldVM does not match a supported file type
+2017-04-13 16:22:27,357 [3] DEBUG Microsoft.AspNetCore.Routing.Tree.TreeRouter [(null)] - Request successfully matched the route with name '(null)' and template 'module/get/{view}/{vm?}'.
+2017-04-13 16:22:27,357 [3] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA)
+2017-04-13 16:22:27,357 [3] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging
+2017-04-13 16:22:27,358 [3] INFO  Tearc.SPA.Controllers.HomeController [(null)] - test logging1
+2017-04-13 16:22:27,358 [3] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executing action method Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA) with arguments (HelloWorld, HelloWorldVM) - ModelState is Valid
+2017-04-13 16:22:27,361 [3] DEBUG Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action method Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA), returned result Microsoft.AspNetCore.Mvc.ContentResult.
+2017-04-13 16:22:27,362 [3] INFO  Microsoft.AspNetCore.Mvc.Internal.ContentResultExecutor [(null)] - Executing ContentResult with HTTP Response ContentType of text/js
+2017-04-13 16:22:27,362 [3] INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker [(null)] - Executed action Tearc.SPA.Controllers.HomeController.Module (Tearc.SPA) in 4.7164ms
+2017-04-13 16:22:27,362 [3] DEBUG Microsoft.AspNetCore.Server.Kestrel [(null)] - Connection id "0HL429QCOP3MT" completed keep alive response.
+2017-04-13 16:22:27,362 [3] INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost [(null)] - Request finished in 5.9339ms 200 text/js
+2017-04-13 16:22:37,134 [12] DEBUG Microsoft.AspNetCore.SignalR.Transports.TransportHeartbeat [(null)] - KeepAlive(ad245603-bed1-451b-b7fb-154cc62785ce)
