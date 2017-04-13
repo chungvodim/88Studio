@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tearc.Resources {
+namespace Tearc.SPA.Resources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace Tearc.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tearc.Resources.GlobalResource", typeof(GlobalResource).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tearc.SPA.Resources.GlobalResource", typeof(GlobalResource).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

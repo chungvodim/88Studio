@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="log4net.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="log4net.xml" />
     <EmbeddedResource Include="Resources\AFITop100.json" />
     <EmbeddedResource Include="Resources\employees.json" />
     <EmbeddedResource Include="Resources\webstore.json" />
@@ -34,6 +39,7 @@
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.6.13" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tearc.Core\Tearc.Core.csproj" />
     <ProjectReference Include="..\Tearc.Resource\Tearc.Resource.csproj" />
   </ItemGroup>
 

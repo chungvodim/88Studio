@@ -2,16 +2,21 @@
 using Microsoft.AspNetCore.Mvc;
 using DotNetify;
 using DotNetify.Routing;
+using Microsoft.Extensions.Logging;
 
 namespace Tearc.SPA.Controllers
 {
     public class HomeController : Controller
     {
         private IHostingEnvironment _hostingEnv;
+        private readonly ILogger _logger;
 
-        public HomeController(IHostingEnvironment hostingEnv)
+        public HomeController(IHostingEnvironment hostingEnv, ILogger<HomeController> logger)
         {
             _hostingEnv = hostingEnv;
+            _logger = logger;
+            _logger.LogInformation("test logging");
+            _logger.LogInformation("test logging1");
         }
 
         // The single-page app's entry point - always starts from index.html.
