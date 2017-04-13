@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Resources\AFITop100.json" />
-    <Content Remove="Resources\employees.json" />
-    <Content Remove="Resources\webstore.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Resources\AFITop100.json" />
     <EmbeddedResource Include="Resources\employees.json" />
     <EmbeddedResource Include="Resources\webstore.json" />
@@ -38,6 +32,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
     <PackageReference Include="React.AspNet" Version="3.0.1" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.6.13" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tearc.Resource\Tearc.Resource.csproj" />
   </ItemGroup>
 
 </Project>

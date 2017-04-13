@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tearc.SPA.Resources {
+namespace Tearc.Resources {
     using System;
     using System.Reflection;
     
