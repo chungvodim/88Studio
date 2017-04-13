@@ -11,6 +11,9 @@ using DotNetify;
 using React.AspNet;
 using Microsoft.Extensions.Configuration;
 using Tearc.Core.Logger;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Tearc.SPA
 {
@@ -36,10 +39,12 @@ namespace Tearc.SPA
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
             // Add Localization if you want your site support multiple languages.
             services.AddLocalization();
+            // Add framework services.
+            // AddViewLocalization: Adds support for localized view files
+            // AddDataAnnotationsLocalization: Adds support for localized DataAnnotations validation messages through IStringLocalizer abstractions.
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
             // SignalR and Memory Cache are required by dotNetify.
             services.AddMemoryCache();
@@ -53,8 +58,25 @@ namespace Tearc.SPA
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // The Configure method (shown below) adds the following middleware components
+        // Take care the ordering
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //var supportedCultures = new[]
+            //{
+            //   new CultureInfo("en-US"),
+            //   new CultureInfo("fr")
+            //};
+
+            //app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("en-US"),
+            //    // Formatting numbers, dates, etc.
+            //    SupportedCultures = supportedCultures,
+            //    // UI strings that we have localized.
+            //    SupportedUICultures = supportedCultures
+            //});
+
             app.UseReact(config => { });
             app.UseStaticFiles();
 
@@ -97,39 +119,4 @@ namespace Tearc.SPA
             });
         }
     }
-
-    //public class Startup
-    //{
-    //    // This method gets called by the runtime. Use this method to add services to the container.
-    //    // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-    //    public void ConfigureServices(IServiceCollection services)
-    //    {
-    //        services.AddMvc();
-    //        services.AddLocalization();
-
-    //        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();  // Required by ReactJS.NET.
-    //        services.AddSignalR();  // Required by dotNetify.
-
-    //        services.AddReact();
-    //        services.AddDotNetify();
-    //    }
-
-    //    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    //    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-    //    {
-    //        app.UseReact(config => { });
-    //        app.UseStaticFiles();
-
-    //        app.UseWebSockets();
-    //        app.UseSignalR(); // Required by dotNetify.
-    //        app.UseDotNetify();
-
-    //        app.UseMvc(routes =>
-    //        {
-    //            routes.MapRoute(
-    //                   name: "default",
-    //                   template: "{controller=Home}/{action=Index}/{id?}");
-    //        });
-    //    }
-    //}
 }
