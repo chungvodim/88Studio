@@ -16,7 +16,6 @@ namespace Tearc.SPA.Controllers
             _hostingEnv = hostingEnv;
             _logger = logger;
             _logger.LogInformation("test logging");
-            _logger.LogInformation("test logging1");
         }
 
         // The single-page app's entry point - always starts from index.html.

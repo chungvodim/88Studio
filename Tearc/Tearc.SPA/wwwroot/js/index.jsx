@@ -42,13 +42,12 @@ var Index = React.createClass({
 
       return (
          <div style={styles.navMenu}>
-            <a style={styles.link} href="http://dotnetify.net">Website</a>
             <div>
-               <h3 style={styles.header}>Basic Examples</h3>
+               <h3 style={styles.header}>{this.state.LocalizedStrings.ProjectNav}</h3>
                <ul id="BasicExamples" style={styles.list}>
                   {showLinks(this.state.BasicExampleLinks)}
                </ul>
-               <h3 style={styles.header}>Further Examples</h3>
+               <h3 style={styles.header}>{this.state.LocalizedStrings.ContactNav}</h3>
                <ul id="FurtherExamples" style={styles.list}>
                   {showLinks(this.state.FurtherExampleLinks)}
                </ul>
@@ -57,7 +56,7 @@ var Index = React.createClass({
             <div style={styles.copyright}>
                <br />
                <small>
-                  © 2015-2017 Dicky Suryadi.&nbsp;
+                  © 2017 Long Nguyen.&nbsp;
                   All code licensed under the <a style={styles.link} href="http://www.apache.org/licenses/LICENSE-2.0">Apache license version 2.0</a>
                </small>
                <br /><br />
@@ -85,7 +84,37 @@ var PageHeader = React.createClass({
             <div class="well">
                 <h1><span class="circle"></span>&nbsp;Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
                 <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
+                <div className="col-md-12">
+                    <LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />
+                </div>
             </div>
+        );
+    }
+});
+
+var LanguageToggle = React.createClass({
+    getInitialState() {
+        return {
+            code: "en-US",
+            language: "English"
+        }
+    },
+    render() {
+        const handleToggle = (event, checked) => {
+            var code = !checked ? "en-US" : "fr-FR";
+            this.setState({ code: code });
+            this.setState({ language: !checked ? "English" : "Français" });
+            this.props.onToggle(code);
+        }
+
+        return (
+            <Toggle style={{ marginTop: "1em", width: "7em" }}
+                trackSwitchedStyle={{ backgroundColor: "#e0e0e0" }}
+                thumbSwitchedStyle={{ backgroundColor: "#11cde5" }}
+                onToggle={handleToggle}
+                label={this.state.language}
+                labelStyle={{ color: "white", fontSize: "medium" }}
+            />
         );
     }
 });

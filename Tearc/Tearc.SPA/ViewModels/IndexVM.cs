@@ -1,14 +1,19 @@
 ﻿using DotNetify;
 using DotNetify.Routing;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tearc.SPA.Resources;
 
 namespace ViewModels
 {
-    public class IndexVM : BaseVM, IRoutable
+    public class IndexVM : TearcBaseVM, IRoutable
     {
+        private readonly IStringLocalizer _localizer;
+        protected override IStringLocalizer localizerImpl { get { return _localizer; } }
+
         public class Link
         {
             public string Id => Route.TemplateId;
@@ -34,8 +39,9 @@ namespace ViewModels
          new Link { Route = this.GetRoute("BookStore"), Caption = "Book Store", Description = "SPA routing with deep-linking"  }
       };
 
-        public IndexVM()
+        public IndexVM(IStringLocalizer<GlobalResource> localizer)
         {
+            _localizer = localizer;
             this.RegisterRoutes("index", new List<RouteTemplate>
          {
             new RouteTemplate("Home",           "/module/get/HelloWorld/HelloWorldVM") { UrlPattern = "", ViewUrl = "HelloWorld" },

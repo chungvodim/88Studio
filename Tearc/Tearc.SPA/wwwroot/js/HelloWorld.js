@@ -12,8 +12,9 @@ var HelloWorld = React.createClass({
         // Set up function to dispatch state to the back-end.
         this.dispatchState = function (state) {
             _this.setState(state);
-            // Dispatches a value to the server view model.
+            // $dispatch: Dispatches a value to the server view model. this is built-in function of Dotnetify
             _this.vm.$dispatch(state);
+            // dispatchState: built-in function of Dotnetify
             // dispatchState(state) = state => setState(state);component.vm.$dispatch(state);
             // setState: This is the primary method you use to trigger UI updates from event handlers and server request callbacks
         };

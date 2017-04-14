@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ContactNav" xml:space="preserve">
+    <value>Liên Hệ</value>
+  </data>
   <data name="Header" xml:space="preserve">
     <value>Header</value>
+  </data>
+  <data name="ProjectNav" xml:space="preserve">
+    <value>Dự Án</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Xây và Gìn giữ</value>
