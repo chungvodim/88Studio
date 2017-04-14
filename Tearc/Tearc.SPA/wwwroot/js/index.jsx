@@ -72,6 +72,13 @@ var PageHeader = React.createClass({
         // Connect this component to the back-end view model.
         this.vm = dotnetify.react.connect("PageHeaderVM", this);
 
+        // Functions to dispatch state to the back-end.
+        this.dispatch = state => this.vm.$dispatch(state);
+        this.dispatchState = state => {
+            this.setState(state);
+            this.vm.$dispatch(state);
+        }
+
         // This component's JSX was loaded along with the VM's initial state for faster rendering.
         var state = window.vmStates.PageHeaderVM || {};
         return state;
@@ -84,9 +91,16 @@ var PageHeader = React.createClass({
             <div class="well">
                 <h1><span class="circle"></span>&nbsp;Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
                 <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
-                <div className="col-md-12">
-                    <LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />
-                </div>
+                <MuiThemeProvider>
+                    <div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <AppBar style={{ marginBottom: "1em" }}
+                                    iconElementRight={<LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />} />
+                            </div>
+                        </div>
+                    </div>
+                </MuiThemeProvider>
             </div>
         );
     }

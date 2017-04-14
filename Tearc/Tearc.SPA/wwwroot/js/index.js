@@ -113,8 +113,19 @@ var PageHeader = React.createClass({
     displayName: "PageHeader",
 
     getInitialState: function getInitialState() {
+        var _this2 = this;
+
         // Connect this component to the back-end view model.
         this.vm = dotnetify.react.connect("PageHeaderVM", this);
+
+        // Functions to dispatch state to the back-end.
+        this.dispatch = function (state) {
+            return _this2.vm.$dispatch(state);
+        };
+        this.dispatchState = function (state) {
+            _this2.setState(state);
+            _this2.vm.$dispatch(state);
+        };
 
         // This component's JSX was loaded along with the VM's initial state for faster rendering.
         var state = window.vmStates.PageHeaderVM || {};
@@ -124,7 +135,7 @@ var PageHeader = React.createClass({
         this.vm.$destroy();
     },
     render: function render() {
-        var _this2 = this;
+        var _this3 = this;
 
         return React.createElement(
             "div",
@@ -147,11 +158,24 @@ var PageHeader = React.createClass({
                 this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""
             ),
             React.createElement(
-                "div",
-                { className: "col-md-12" },
-                React.createElement(LanguageToggle, { onToggle: function (code) {
-                        return _this2.dispatch({ CultureCode: code });
-                    } })
+                MuiThemeProvider,
+                null,
+                React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "div",
+                        { className: "row" },
+                        React.createElement(
+                            "div",
+                            { className: "col-md-12" },
+                            React.createElement(AppBar, { style: { marginBottom: "1em" },
+                                iconElementRight: React.createElement(LanguageToggle, { onToggle: function (code) {
+                                        return _this3.dispatch({ CultureCode: code });
+                                    } }) })
+                        )
+                    )
+                )
             )
         );
     }
@@ -167,13 +191,13 @@ var LanguageToggle = React.createClass({
         };
     },
     render: function render() {
-        var _this3 = this;
+        var _this4 = this;
 
         var handleToggle = function handleToggle(event, checked) {
             var code = !checked ? "en-US" : "fr-FR";
-            _this3.setState({ code: code });
-            _this3.setState({ language: !checked ? "English" : "Français" });
-            _this3.props.onToggle(code);
+            _this4.setState({ code: code });
+            _this4.setState({ language: !checked ? "English" : "Français" });
+            _this4.props.onToggle(code);
         };
 
         return React.createElement(Toggle, { style: { marginTop: "1em", width: "7em" },
