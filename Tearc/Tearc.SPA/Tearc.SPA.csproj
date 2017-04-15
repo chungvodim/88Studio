@@ -11,14 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\js\GridView - Copy.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="log4net.xml" />
     <EmbeddedResource Include="Resources\AFITop100.json" />
     <EmbeddedResource Include="Resources\employees.json" />
     <EmbeddedResource Include="Resources\webstore.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BuildWebCompiler" Version="1.11.326" />

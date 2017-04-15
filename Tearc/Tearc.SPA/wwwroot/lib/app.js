@@ -12,6 +12,7 @@ DoughnutChart = require("react-chartjs").Doughnut;
 // Material-UI components.
 MuiThemeProvider = require("material-ui/styles/MuiThemeProvider").default;
 AppBar = require("material-ui/AppBar").default;
+GridList = require("material-ui/GridList").default;
 baseTheme = require("material-ui/styles/baseThemes/lightBaseTheme").default;
 getMuiTheme = require("material-ui/styles/getMuiTheme").default;
 AutoComplete = require("material-ui/AutoComplete").default;
@@ -23,6 +24,8 @@ Checkbox = require( "material-ui/Checkbox" ).default;
 Chip = require("material-ui/Chip").default;
 Dialog = require("material-ui/Dialog").default;
 IconButton = require( "material-ui/IconButton" ).default;
+Subheader = require( "material-ui/Subheader" ).default;
+StarBorder = require("material-ui/svg-icons/toggle/star-border").default;
 FlatButton = require( "material-ui/FlatButton" ).default;
 Drawer = require("material-ui/Drawer").default;
 MenuItem = require( "material-ui/MenuItem" ).default;
