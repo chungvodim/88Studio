@@ -12,6 +12,8 @@ DoughnutChart = require("react-chartjs").Doughnut;
 // Material-UI components.
 MuiThemeProvider = require("material-ui/styles/MuiThemeProvider").default;
 AppBar = require("material-ui/AppBar").default;
+baseTheme = require("material-ui/styles/baseThemes/lightBaseTheme").default;
+getMuiTheme = require("material-ui/styles/getMuiTheme").default;
 AutoComplete = require("material-ui/AutoComplete").default;
 Card = require("material-ui/Card").Card;
 CardActions = require("material-ui/Card").CardActions;
@@ -22,6 +24,7 @@ Chip = require("material-ui/Chip").default;
 Dialog = require("material-ui/Dialog").default;
 IconButton = require( "material-ui/IconButton" ).default;
 FlatButton = require( "material-ui/FlatButton" ).default;
+Drawer = require("material-ui/Drawer").default;
 MenuItem = require( "material-ui/MenuItem" ).default;
 Paper = require("material-ui/Paper").default;
 RadioButtonGroup = require( "material-ui/RadioButton" ).RadioButtonGroup;
@@ -40,7 +43,6 @@ TableHeader = require("material-ui/Table").TableHeader;
 TableHeaderColumn = require("material-ui/Table").TableHeaderColumn;
 TableRow = require("material-ui/Table").TableRow;
 TableRowColumn = require("material-ui/Table").TableRowColumn;
-Drawer = require("material-ui/Drawer").default;
 
 // Material-UI icons.
 IconDelete = require("material-ui/svg-icons/action/delete").default;

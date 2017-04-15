@@ -20,9 +20,11 @@ var Index = React.createClass({
         };
 
         var state = window.vmStates.IndexVM || {};
-        state["selectedLink"] = "";
+        state.selectedLink = "";
+        state.open = false;
         return state;
     },
+
     render: function render() {
         var _this2 = this;
 
@@ -69,15 +71,23 @@ var Index = React.createClass({
             });
         };
 
+        var handleToggle = function handleToggle() {
+            _this2.setState({ open: !_this2.state.open });
+        };
+
+        var handleClose = function handleClose() {
+            return _this2.setState({ open: false });
+        };
+
         return React.createElement(
             "div",
             null,
             React.createElement(
-                "div",
-                { classNames: "well", id: "pageHeader" },
+                MuiThemeProvider,
+                null,
                 React.createElement(
-                    MuiThemeProvider,
-                    null,
+                    "div",
+                    { classNames: "well", id: "pageHeader" },
                     React.createElement(
                         "div",
                         { className: "row" },
@@ -86,9 +96,7 @@ var Index = React.createClass({
                             { className: "col-md-12" },
                             React.createElement(AppBar, { style: { marginBottom: "1em" },
                                 title: this.state.LocalizedStrings.Title,
-                                onLeftIconButtonTouchTap: function (event) {
-                                    alert();
-                                },
+                                onLeftIconButtonTouchTap: handleToggle,
                                 iconElementRight: React.createElement(LanguageToggle, { onToggle: function (code) {
                                         return _this2.dispatch({ CultureCode: code });
                                     } }) })
@@ -97,55 +105,54 @@ var Index = React.createClass({
                 )
             ),
             React.createElement(
-                "div",
-                { classNames: "container-fluid" },
+                MuiThemeProvider,
+                null,
                 React.createElement(
                     "div",
-                    { className: "row" },
+                    { classNames: "container-fluid" },
                     React.createElement(
-                        "div",
-                        { className: "col-md-2 nav-menu" },
+                        Drawer,
+                        {
+                            docked: false,
+                            width: 200,
+                            open: this.state.open,
+                            onRequestChange: function (open) {
+                                return _this2.setState({ open: open });
+                            }
+                        },
                         React.createElement(
                             "div",
-                            { id: "NavMenu" },
+                            { style: styles.navMenu },
                             React.createElement(
                                 "div",
-                                { style: styles.navMenu },
+                                null,
                                 React.createElement(
-                                    "div",
-                                    null,
-                                    React.createElement(
-                                        "h3",
-                                        { style: styles.header },
-                                        this.state.LocalizedStrings.ProjectNav
-                                    ),
-                                    React.createElement(
-                                        "ul",
-                                        { id: "BasicExamples", style: styles.list },
-                                        showLinks(this.state.BasicExampleLinks),
-                                        showLinks(this.state.FurtherExampleLinks)
-                                    )
+                                    "h3",
+                                    { style: styles.header },
+                                    this.state.LocalizedStrings.ProjectNav
                                 ),
                                 React.createElement(
-                                    "div",
-                                    { style: styles.copyright },
-                                    React.createElement("br", null),
-                                    React.createElement(
-                                        "small",
-                                        null,
-                                        "© 2017 Long Nguyen."
-                                    ),
-                                    React.createElement("br", null),
-                                    React.createElement("br", null)
+                                    "ul",
+                                    { id: "BasicExamples", style: styles.list },
+                                    showLinks(this.state.BasicExampleLinks),
+                                    showLinks(this.state.FurtherExampleLinks)
                                 )
+                            ),
+                            React.createElement(
+                                "div",
+                                { style: styles.copyright },
+                                React.createElement("br", null),
+                                React.createElement(
+                                    "small",
+                                    null,
+                                    "© 2017 Long Nguyen."
+                                ),
+                                React.createElement("br", null),
+                                React.createElement("br", null)
                             )
                         )
                     ),
-                    React.createElement(
-                        "div",
-                        { className: "col-md-12" },
-                        React.createElement("div", { id: "Content" })
-                    )
+                    React.createElement("div", { id: "Content" })
                 )
             )
         );
