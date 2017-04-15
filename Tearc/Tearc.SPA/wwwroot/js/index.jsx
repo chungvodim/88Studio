@@ -20,12 +20,12 @@ var Index = React.createClass({
 
     render() {
         const styles = {
-            navMenu: { padding: "15px", color: "rgb(125,135,140)", backgroundColor: "rgb(40,50,55)" },
+            navMenu: { padding: "15px", color: "rgb(125,135,140)", backgroundColor: "rgb(255,255,255)" },
             link: { color: "#b8c7ce" },
             exampleLink: { color: "#b8c7ce", display: "block", padding: "5px 0px 5px 20px", textDecoration: "none" },
             activeExampleLink: { color: "black", backgroundColor: "#eef0f0", display: "block", padding: "5px 0px 5px 20px", textDecoration: "none" },
             desc: { padding: "0 15px 0 35px", fontSize: "9pt", marginBottom: ".5em" },
-            header: { fontSize: "medium", color: "rgba(146,208,80,.8)" },
+            header: { fontSize: "24px", color: "rgba(0, 188, 212, 1)" },
             list: { paddingLeft: "0", listStyleType: "none", margin: "0 -15px" },
             listItem: { paddingLeft: "20px" },
             bullet: { color: "rgba(255,205,0,.8)", transform: "scale(.5)" },
