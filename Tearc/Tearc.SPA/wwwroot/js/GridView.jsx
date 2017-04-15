@@ -99,33 +99,6 @@ var SearchBox = React.createClass({
    }
 });
 
-var LanguageToggle = React.createClass({
-   getInitialState() {
-      return {
-         code: "en-US",
-         language: "English"
-      }
-   },
-   render() {
-      const handleToggle = (event, checked) => {
-         var code = !checked? "en-US" : "fr-FR";
-         this.setState({code: code});
-         this.setState({language: !checked? "English" : "Français"});
-         this.props.onToggle(code);
-      }
-
-      return (
-         <Toggle style={{marginTop: "1em", width: "7em"}}
-                 trackSwitchedStyle={{backgroundColor: "#e0e0e0"}}
-                 thumbSwitchedStyle={{backgroundColor: "#11cde5"}}
-                 onToggle={handleToggle}
-                 label={this.state.language}
-                 labelStyle={{color: "white", fontSize: "medium"}}
-                  />
-      );
-   }
-});
-
 var EmployeeTable = React.createClass({
    render() {
       const handleRowSelection = rows => {

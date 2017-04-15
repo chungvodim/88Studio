@@ -144,53 +144,24 @@ var SearchBox = React.createClass({
    }
 });
 
-var LanguageToggle = React.createClass({
-   displayName: "LanguageToggle",
-
-   getInitialState: function getInitialState() {
-      return {
-         code: "en-US",
-         language: "English"
-      };
-   },
-   render: function render() {
-      var _this4 = this;
-
-      var handleToggle = function handleToggle(event, checked) {
-         var code = !checked ? "en-US" : "fr-FR";
-         _this4.setState({ code: code });
-         _this4.setState({ language: !checked ? "English" : "Français" });
-         _this4.props.onToggle(code);
-      };
-
-      return React.createElement(Toggle, { style: { marginTop: "1em", width: "7em" },
-         trackSwitchedStyle: { backgroundColor: "#e0e0e0" },
-         thumbSwitchedStyle: { backgroundColor: "#11cde5" },
-         onToggle: handleToggle,
-         label: this.state.language,
-         labelStyle: { color: "white", fontSize: "medium" }
-      });
-   }
-});
-
 var EmployeeTable = React.createClass({
    displayName: "EmployeeTable",
 
    render: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       var handleRowSelection = function handleRowSelection(rows) {
-         if (rows.length > 0) handleSelect(_this5.props.data[rows[0]].Id);
+         if (rows.length > 0) handleSelect(_this4.props.data[rows[0]].Id);
       };
 
       var handleSelect = function handleSelect(id) {
-         if (id != _this5.props.select) _this5.props.onSelect(id);
+         if (id != _this4.props.select) _this4.props.onSelect(id);
       };
 
       var employees = this.props.data.map(function (employee, index) {
          return React.createElement(
             TableRow,
-            { key: employee.Id, selected: _this5.props.select == employee.Id },
+            { key: employee.Id, selected: _this4.props.select == employee.Id },
             React.createElement(
                TableRowColumn,
                null,
@@ -246,7 +217,7 @@ var Pagination = React.createClass({
    displayName: "Pagination",
 
    render: function render() {
-      var _this6 = this;
+      var _this5 = this;
 
       var pageButtons = this.props.pages.map(function (page) {
          return React.createElement(
@@ -254,9 +225,9 @@ var Pagination = React.createClass({
             { key: page, style: { display: "inline", padding: ".5em 0" } },
             React.createElement(FlatButton, { style: { minWidth: "1em" },
                label: page,
-               disabled: _this6.props.select == page,
+               disabled: _this5.props.select == page,
                onClick: function () {
-                  return _this6.props.onSelect(page);
+                  return _this5.props.onSelect(page);
                } })
          );
       });
@@ -273,18 +244,18 @@ var EmployeeDetails = React.createClass({
    displayName: "EmployeeDetails",
 
    render: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
       var employee = this.props.data;
       var iconEdit = React.createElement(IconEdit, { style: { width: 20, height: 20 }, color: "#8b8c8d" });
       var iconPhone = React.createElement(IconPhone, { style: { width: 24, height: 24 } });
 
       var reportsTo = function reportsTo(name) {
-         return name != null ? _this7.props.strings.ReportTo + " " + name : "";
+         return name != null ? _this6.props.strings.ReportTo + " " + name : "";
       };
 
       var editButton = function editButton() {
-         if (_this7.props.data.Id > 0) return React.createElement(FlatButton, { label: _this7.props.strings.EditLabel, icon: iconEdit, onClick: _this7.props.onEdit });
+         if (_this6.props.data.Id > 0) return React.createElement(FlatButton, { label: _this6.props.strings.EditLabel, icon: iconEdit, onClick: _this6.props.onEdit });
       };
 
       return React.createElement(
@@ -326,30 +297,30 @@ var EditWizard = React.createClass({
       };
    },
    render: function render() {
-      var _this8 = this;
+      var _this7 = this;
 
       var handleBack = function handleBack() {
-         return _this8.setState({ step: _this8.state.step - 1 });
+         return _this7.setState({ step: _this7.state.step - 1 });
       };
       var handleNext = function handleNext() {
-         return _this8.setState({ step: _this8.state.step + 1 });
+         return _this7.setState({ step: _this7.state.step + 1 });
       };
       var handleFinish = function handleFinish() {
-         return _this8.props.onFinish({
-            Id: _this8.props.employeeDetails.Id,
-            FirstName: _this8.state.firstName,
-            LastName: _this8.state.lastName,
-            ReportTo: _this8.state.reportTo
+         return _this7.props.onFinish({
+            Id: _this7.props.employeeDetails.Id,
+            FirstName: _this7.state.firstName,
+            LastName: _this7.state.lastName,
+            ReportTo: _this7.state.reportTo
          });
       };
 
       var actions = [React.createElement(FlatButton, { label: this.props.strings.Back, onClick: handleBack, disabled: this.state.step == 0 }), React.createElement(FlatButton, { label: this.props.strings.Next, onClick: handleNext, disabled: this.state.step == this.state.maxStep || this.state.disableNext }), React.createElement(FlatButton, { label: this.props.strings.Finish, primary: true, onClick: handleFinish, disabled: this.state.step != this.state.maxStep }), React.createElement(FlatButton, { label: this.props.strings.Cancel, onClick: function () {
-            return _this8.props.onCancel();
+            return _this7.props.onCancel();
          } })];
 
       var handleUpdateReportTo = function handleUpdateReportTo(value) {
-         _this8.state.details.ReportToName = value;
-         _this8.props.onReportToChange(value);
+         _this7.state.details.ReportToName = value;
+         _this7.props.onReportToChange(value);
       };
 
       var content = function content(step) {
@@ -358,59 +329,59 @@ var EditWizard = React.createClass({
                return React.createElement(
                   "div",
                   null,
-                  React.createElement(TextField, { id: "FirstName", floatingLabelText: _this8.props.strings.FirstName,
-                     value: _this8.state.firstName,
+                  React.createElement(TextField, { id: "FirstName", floatingLabelText: _this7.props.strings.FirstName,
+                     value: _this7.state.firstName,
                      onChange: function (event) {
-                        return _this8.setState({ firstName: event.target.value });
+                        return _this7.setState({ firstName: event.target.value });
                      } }),
-                  React.createElement(TextField, { id: "LastName", floatingLabelText: _this8.props.strings.LastName,
-                     value: _this8.state.lastName,
+                  React.createElement(TextField, { id: "LastName", floatingLabelText: _this7.props.strings.LastName,
+                     value: _this7.state.lastName,
                      onChange: function (event) {
-                        return _this8.setState({ lastName: event.target.value });
+                        return _this7.setState({ lastName: event.target.value });
                      } })
                );
             case 1:
-               var reportToSearchResult = _this8.props.reportToSearchResult.map(function (i) {
+               var reportToSearchResult = _this7.props.reportToSearchResult.map(function (i) {
                   return i.Name;
                });
-               var initialText = _this8.state.reportToName;
+               var initialText = _this7.state.reportToName;
 
                var handleUpdate = function handleUpdate(value) {
-                  var match = value.length > 0 ? _this8.props.reportToSearchResult.filter(function (i) {
+                  var match = value.length > 0 ? _this7.props.reportToSearchResult.filter(function (i) {
                      return i.Name.toUpperCase() == value.toUpperCase();
                   }) : { Id: 0, Name: "" };
-                  _this8.setState({ reportTo: match.length > 0 ? match[0].Id : -1 });
-                  _this8.setState({ reportToName: match.length > 0 ? match[0].Name : value });
-                  _this8.setState({ disableNext: match.length == 0 });
+                  _this7.setState({ reportTo: match.length > 0 ? match[0].Id : -1 });
+                  _this7.setState({ reportToName: match.length > 0 ? match[0].Name : value });
+                  _this7.setState({ disableNext: match.length == 0 });
 
-                  _this8.props.onReportToChange(value);
+                  _this7.props.onReportToChange(value);
                };
 
                return React.createElement(AutoComplete, { id: "AutoComplete",
-                  floatingLabelText: _this8.props.strings.ReportTo,
-                  hintText: _this8.props.strings.ReportToHintText,
+                  floatingLabelText: _this7.props.strings.ReportTo,
+                  hintText: _this7.props.strings.ReportToHintText,
                   filter: AutoComplete.caseInsensitiveFilter,
                   searchText: initialText,
-                  errorText: _this8.props.strings[_this8.props.reportToError],
+                  errorText: _this7.props.strings[_this7.props.reportToError],
                   dataSource: reportToSearchResult,
                   onUpdateInput: handleUpdate });
             case 2:
                var paperStyle = { display: "inline", padding: ".5em 1em", backgroundColor: "#e6e6e6" };
-               var reportToName = _this8.state.reportToName != null ? _this8.state.reportToName : _this8.props.strings.NoOne;
+               var reportToName = _this7.state.reportToName != null ? _this7.state.reportToName : _this7.props.strings.NoOne;
                return React.createElement(
                   "div",
                   { style: { paddingTop: "2.2em" } },
                   React.createElement(
                      Paper,
                      { style: paperStyle },
-                     _this8.state.firstName,
+                     _this7.state.firstName,
                      " ",
-                     _this8.state.lastName
+                     _this7.state.lastName
                   ),
                   React.createElement(
                      "span",
                      { style: { margin: "0 1em" } },
-                     _this8.props.strings.ReportTo,
+                     _this7.props.strings.ReportTo,
                      " "
                   ),
                   React.createElement(

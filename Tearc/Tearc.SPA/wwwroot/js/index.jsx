@@ -6,6 +6,8 @@ var Index = React.createClass({
       // Connect this component to the back-end view model.
       this.vm = dotnetify.react.connect("IndexVM", this);
       this.vm.onRouteEnter = (path, template) => template.Target = "Content";
+      // Functions to dispatch state to the back-end.
+      this.dispatch = state => this.vm.$dispatch(state);
 
       var state = window.vmStates.IndexVM || {};
       state["selectedLink"] = "";
@@ -41,69 +43,54 @@ var Index = React.createClass({
       );
 
       return (
-         <div style={styles.navMenu}>
-            <div>
-               <h3 style={styles.header}>{this.state.LocalizedStrings.ProjectNav}</h3>
-               <ul id="BasicExamples" style={styles.list}>
-                  {showLinks(this.state.BasicExampleLinks)}
-               </ul>
-               <h3 style={styles.header}>{this.state.LocalizedStrings.ContactNav}</h3>
-               <ul id="FurtherExamples" style={styles.list}>
-                  {showLinks(this.state.FurtherExampleLinks)}
-               </ul>
-            </div>
+          <div>
+              <div classNames="well" id="pageHeader">
+                  <h1><span classNames="circle"></span><img src="/images/reactLogo.svg" width="28" />Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
+                  <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
+                  <MuiThemeProvider>
+                      <div className="row">
+                          <div className="col-md-12">
+                              <AppBar style={{ marginBottom: "1em" }}
+                                  iconElementRight={<LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />} />
+                          </div>
+                      </div>
+                  </MuiThemeProvider>
+              </div>
+              <div classNames="container-fluid">
+                  <div className="row">
+                      <div className="col-md-2 nav-menu">
+                          <div id="NavMenu">
+                              <div style={styles.navMenu}>
+                                  <div>
+                                      <h3 style={styles.header}>{this.state.LocalizedStrings.ProjectNav}</h3>
+                                      <ul id="BasicExamples" style={styles.list}>
+                                          {showLinks(this.state.BasicExampleLinks)}
+                                      </ul>
+                                      <h3 style={styles.header}>{this.state.LocalizedStrings.ContactNav}</h3>
+                                      <ul id="FurtherExamples" style={styles.list}>
+                                          {showLinks(this.state.FurtherExampleLinks)}
+                                      </ul>
+                                  </div>
 
-            <div style={styles.copyright}>
-               <br />
-               <small>
-                  © 2017 Long Nguyen.&nbsp;
+                                  <div style={styles.copyright}>
+                                      <br />
+                                      <small>
+                                          © 2017 Long Nguyen.&nbsp;
                   All code licensed under the <a style={styles.link} href="http://www.apache.org/licenses/LICENSE-2.0">Apache license version 2.0</a>
-               </small>
-               <br /><br />
-            </div>
-         </div>
+                                      </small>
+                                      <br /><br />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div className="col-md-10">
+                          <div id="Content"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       );
    }
-});
-
-var PageHeader = React.createClass({
-
-    getInitialState() {
-        // Connect this component to the back-end view model.
-        this.vm = dotnetify.react.connect("PageHeaderVM", this);
-
-        // Functions to dispatch state to the back-end.
-        this.dispatch = state => this.vm.$dispatch(state);
-        this.dispatchState = state => {
-            this.setState(state);
-            this.vm.$dispatch(state);
-        }
-
-        // This component's JSX was loaded along with the VM's initial state for faster rendering.
-        var state = window.vmStates.PageHeaderVM || {};
-        return state;
-    },
-    componentWillUnmount() {
-        this.vm.$destroy();
-    },
-    render() {
-        return (
-            <div class="well">
-                <h1><span class="circle"></span>&nbsp;Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
-                <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
-                <MuiThemeProvider>
-                    <div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <AppBar style={{ marginBottom: "1em" }}
-                                    iconElementRight={<LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />} />
-                            </div>
-                        </div>
-                    </div>
-                </MuiThemeProvider>
-            </div>
-        );
-    }
 });
 
 var LanguageToggle = React.createClass({
@@ -135,10 +122,5 @@ var LanguageToggle = React.createClass({
 
 ReactDOM.render(
   <Index />,
-  document.querySelector("#NavMenu")
-);
-
-ReactDOM.render(
-    <PageHeader />,
-    document.querySelector("#pageHeader")
+  document.querySelector("body")
 );
