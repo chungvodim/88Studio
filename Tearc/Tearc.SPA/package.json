@@ -11,7 +11,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "signalr": "^2.2.1",
-    "material-ui": "^0.16.7",
+    "material-ui": "^0.17.4",
     "react-tap-event-plugin": "^2.0.1",
     "chart.js": "1.1.1",
     "react-chartjs": "0.8.0"

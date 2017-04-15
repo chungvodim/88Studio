@@ -40,6 +40,7 @@ TableHeader = require("material-ui/Table").TableHeader;
 TableHeaderColumn = require("material-ui/Table").TableHeaderColumn;
 TableRow = require("material-ui/Table").TableRow;
 TableRowColumn = require("material-ui/Table").TableRowColumn;
+Drawer = require("material-ui/Drawer").default;
 
 // Material-UI icons.
 IconDelete = require("material-ui/svg-icons/action/delete").default;

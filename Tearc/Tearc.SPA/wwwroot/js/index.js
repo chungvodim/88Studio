@@ -15,7 +15,8 @@ var Index = React.createClass({
         };
         // Functions to dispatch state to the back-end.
         this.dispatch = function (state) {
-            return _this.vm.$dispatch(state);
+            _this.vm.$dispatch(state);
+            _this.gridview_VM.$dispatch(state);
         };
 
         var state = window.vmStates.IndexVM || {};
@@ -35,7 +36,8 @@ var Index = React.createClass({
             list: { paddingLeft: "0", listStyleType: "none", margin: "0 -15px" },
             listItem: { paddingLeft: "20px" },
             bullet: { color: "rgba(255,205,0,.8)", transform: "scale(.5)" },
-            copyright: { color: "rgb(125,135,140)", fontSize: "8pt" }
+            copyright: { color: "rgb(125,135,140)", fontSize: "8pt" },
+            hide: { display: "none" }
         };
 
         var setSelectedLink = function setSelectedLink(linkId) {
@@ -74,24 +76,6 @@ var Index = React.createClass({
                 "div",
                 { classNames: "well", id: "pageHeader" },
                 React.createElement(
-                    "h1",
-                    null,
-                    React.createElement("span", { classNames: "circle" }),
-                    React.createElement("img", { src: "/images/reactLogo.svg", width: "28" }),
-                    "Tearc + ",
-                    React.createElement(
-                        "span",
-                        null,
-                        React.createElement("img", { src: "/images/reactLogo.svg", width: "28" }),
-                        "Architect"
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""
-                ),
-                React.createElement(
                     MuiThemeProvider,
                     null,
                     React.createElement(
@@ -101,6 +85,10 @@ var Index = React.createClass({
                             "div",
                             { className: "col-md-12" },
                             React.createElement(AppBar, { style: { marginBottom: "1em" },
+                                title: this.state.LocalizedStrings.Title,
+                                onLeftIconButtonTouchTap: function (event) {
+                                    alert();
+                                },
                                 iconElementRight: React.createElement(LanguageToggle, { onToggle: function (code) {
                                         return _this2.dispatch({ CultureCode: code });
                                     } }) })
@@ -134,16 +122,7 @@ var Index = React.createClass({
                                     React.createElement(
                                         "ul",
                                         { id: "BasicExamples", style: styles.list },
-                                        showLinks(this.state.BasicExampleLinks)
-                                    ),
-                                    React.createElement(
-                                        "h3",
-                                        { style: styles.header },
-                                        this.state.LocalizedStrings.ContactNav
-                                    ),
-                                    React.createElement(
-                                        "ul",
-                                        { id: "FurtherExamples", style: styles.list },
+                                        showLinks(this.state.BasicExampleLinks),
                                         showLinks(this.state.FurtherExampleLinks)
                                     )
                                 ),
@@ -154,12 +133,7 @@ var Index = React.createClass({
                                     React.createElement(
                                         "small",
                                         null,
-                                        "© 2017 Long Nguyen.  All code licensed under the ",
-                                        React.createElement(
-                                            "a",
-                                            { style: styles.link, href: "http://www.apache.org/licenses/LICENSE-2.0" },
-                                            "Apache license version 2.0"
-                                        )
+                                        "© 2017 Long Nguyen."
                                     ),
                                     React.createElement("br", null),
                                     React.createElement("br", null)
@@ -169,7 +143,7 @@ var Index = React.createClass({
                     ),
                     React.createElement(
                         "div",
-                        { className: "col-md-10" },
+                        { className: "col-md-12" },
                         React.createElement("div", { id: "Content" })
                     )
                 )

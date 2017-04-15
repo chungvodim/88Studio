@@ -7,7 +7,11 @@ var Index = React.createClass({
       this.vm = dotnetify.react.connect("IndexVM", this);
       this.vm.onRouteEnter = (path, template) => template.Target = "Content";
       // Functions to dispatch state to the back-end.
-      this.dispatch = state => this.vm.$dispatch(state);
+      this.dispatch = state =>
+      {
+          this.vm.$dispatch(state);
+          this.gridview_VM.$dispatch(state);
+      }
 
       var state = window.vmStates.IndexVM || {};
       state["selectedLink"] = "";
@@ -24,7 +28,8 @@ var Index = React.createClass({
          list: { paddingLeft: "0", listStyleType: "none", margin: "0 -15px" },
          listItem: { paddingLeft: "20px" },
          bullet: { color: "rgba(255,205,0,.8)", transform: "scale(.5)" },
-         copyright: { color: "rgb(125,135,140)", fontSize: "8pt" }
+         copyright: { color: "rgb(125,135,140)", fontSize: "8pt" },
+         hide: {display: "none"}
       }
 
       const setSelectedLink = (linkId) =>  this.setState({selectedLink: linkId});
@@ -45,12 +50,12 @@ var Index = React.createClass({
       return (
           <div>
               <div classNames="well" id="pageHeader">
-                  <h1><span classNames="circle"></span><img src="/images/reactLogo.svg" width="28" />Tearc + <span><img src="/images/reactLogo.svg" width="28" />Architect</span></h1>
-                  <p>{this.state.LocalizedStrings != null ? this.state.LocalizedStrings.Slogan : ""}</p>
                   <MuiThemeProvider>
                       <div className="row">
                           <div className="col-md-12">
                               <AppBar style={{ marginBottom: "1em" }}
+                                  title={this.state.LocalizedStrings.Title}
+                                  onLeftIconButtonTouchTap={event => { alert();}}
                                   iconElementRight={<LanguageToggle onToggle={code => this.dispatch({ CultureCode: code })} />} />
                           </div>
                       </div>
@@ -65,9 +70,6 @@ var Index = React.createClass({
                                       <h3 style={styles.header}>{this.state.LocalizedStrings.ProjectNav}</h3>
                                       <ul id="BasicExamples" style={styles.list}>
                                           {showLinks(this.state.BasicExampleLinks)}
-                                      </ul>
-                                      <h3 style={styles.header}>{this.state.LocalizedStrings.ContactNav}</h3>
-                                      <ul id="FurtherExamples" style={styles.list}>
                                           {showLinks(this.state.FurtherExampleLinks)}
                                       </ul>
                                   </div>
@@ -75,15 +77,14 @@ var Index = React.createClass({
                                   <div style={styles.copyright}>
                                       <br />
                                       <small>
-                                          © 2017 Long Nguyen.&nbsp;
-                  All code licensed under the <a style={styles.link} href="http://www.apache.org/licenses/LICENSE-2.0">Apache license version 2.0</a>
+                                          © 2017 Long Nguyen.
                                       </small>
                                       <br /><br />
                                   </div>
                               </div>
                           </div>
                       </div>
-                      <div className="col-md-10">
+                      <div className="col-md-12">
                           <div id="Content"></div>
                       </div>
                   </div>
