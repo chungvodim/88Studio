@@ -1,18 +1,11 @@
-﻿var Projects = React.createClass({
+﻿var RouteLink = dotnetify.react.router.RouteLink;
+
+var Projects = React.createClass({
 
     getInitialState() {
-        // Connect this component to the back-end view model.
         this.vm = dotnetify.react.connect("ProjectsVM", this);
+        this.vm.onRouteEnter = (path, template) => template.Target = "ProjectPanel";
 
-        // Set up function to dispatch state to the back-end.
-        this.dispatchState = state => {
-            this.setState(state);
-            // $dispatch: Dispatches a value to the server view model. this is built-in function of Dotnetify
-            this.vm.$dispatch(state);
-            // setState: This is the primary method you use to trigger UI updates from event handlers and server request callbacks
-        }
-
-        // This component's JSX was loaded along with the VM's initial state for faster rendering.
         return window.vmStates.ProjectsVM;
     },
     componentWillUnmount() {
@@ -26,13 +19,13 @@
                 justifyContent: 'space-around',
             },
             gridList: {
-                width: 500,
-                height: 450,
-                overflowY: 'auto',
+                width: '100%',
+                height: 'auto',
+                overflowY: 'none',
             }
         }
 
-        const tilesData = [
+        const projectsData = [
             {
                 img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
                 title: 'Breakfast',
@@ -79,23 +72,69 @@
             <MuiThemeProvider>
                 <div style={styles.root}>
                     <GridList
-                        cellHeight={180}
+                        cols={4}
+                        cellHeight={'auto'}
                         style={styles.gridList}
                     >
-                        <Subheader>December</Subheader>
-                        {tilesData.map((tile) => (
+                        <Subheader>{this.state.LocalizedStrings.ProjectNav}</Subheader>
+                        {projectsData.map((project) => (
                             <GridTile
-                                key={tile.img}
-                                title={tile.title}
-                                subtitle={<span>by <b>{tile.author}</b></span>}
+                                key={project.img}
+                                title={project.title}
+                                subtitle={<span>by <b>{project.author}</b></span>}
                                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                             >
-                                <img src={tile.img} />
+                                <RouteLink vm={this.props.vm} route={project.Route}>
+                                    <img src={project.img} />
+                                </RouteLink>
                             </GridTile>
                         ))}
                     </GridList>
+                    <div id="ProjectPanel" />
                 </div>
             </MuiThemeProvider>
         );
+    }
+});
+
+var ProjectDefault = function (props) {
+    return <div></div>;
+}
+
+var Project = React.createClass({
+    getInitialState() {
+        this.vm = dotnetify.react.connect("ProjectVM", this);
+        return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
+    },
+    componentWillUnmount() {
+        this.vm.$destroy();
+    },
+    render() {
+        var project = this.state.Project;
+
+        const handleClose = () => {
+            this.setState({ open: false });
+            window.history.back();
+        }
+
+        const actions = [<FlatButton label="Back" primary={true} onTouchTap={handleClose} />]
+
+        return (
+            <MuiThemeProvider>
+                <Dialog open={this.state.open} actions={actions}>
+                    <div className="row" style={{ minHeight: "380px" }}>
+                        <div className="col-md-4">
+                            <img className="thumbnail" src={project.ImageUrl} />
+                        </div>
+                        <div className="col-md-8">
+                            <h3>{project.Title}</h3>
+                            <h5>{project.Author}</h5>
+                            <br />
+                            <RaisedButton primary={true}>Buy</RaisedButton>
+                        </div>
+                    </div>
+                </Dialog>
+            </MuiThemeProvider>
+        )
     }
 });

@@ -1,29 +1,24 @@
-﻿'use strict';
+﻿"use strict";
+
+var RouteLink = dotnetify.react.router.RouteLink;
 
 var Projects = React.createClass({
-    displayName: 'Projects',
+    displayName: "Projects",
 
     getInitialState: function getInitialState() {
-        var _this = this;
-
-        // Connect this component to the back-end view model.
         this.vm = dotnetify.react.connect("ProjectsVM", this);
-
-        // Set up function to dispatch state to the back-end.
-        this.dispatchState = function (state) {
-            _this.setState(state);
-            // $dispatch: Dispatches a value to the server view model. this is built-in function of Dotnetify
-            _this.vm.$dispatch(state);
-            // setState: This is the primary method you use to trigger UI updates from event handlers and server request callbacks
+        this.vm.onRouteEnter = function (path, template) {
+            return template.Target = "ProjectPanel";
         };
 
-        // This component's JSX was loaded along with the VM's initial state for faster rendering.
         return window.vmStates.ProjectsVM;
     },
     componentWillUnmount: function componentWillUnmount() {
         this.vm.$destroy();
     },
     render: function render() {
+        var _this = this;
+
         var styles = {
             root: {
                 display: 'flex',
@@ -31,13 +26,13 @@ var Projects = React.createClass({
                 justifyContent: 'space-around'
             },
             gridList: {
-                width: 500,
-                height: 450,
-                overflowY: 'auto'
+                width: '100%',
+                height: 'auto',
+                overflowY: 'none'
             }
         };
 
-        var tilesData = [{
+        var projectsData = [{
             img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
             title: 'Breakfast',
             author: 'jill111'
@@ -75,44 +70,116 @@ var Projects = React.createClass({
             MuiThemeProvider,
             null,
             React.createElement(
-                'div',
+                "div",
                 { style: styles.root },
                 React.createElement(
                     GridList,
                     {
-                        cellHeight: 180,
+                        cols: 4,
+                        cellHeight: 'auto',
                         style: styles.gridList
                     },
                     React.createElement(
                         Subheader,
                         null,
-                        'December'
+                        this.state.LocalizedStrings.ProjectNav
                     ),
-                    tilesData.map(function (tile) {
+                    projectsData.map(function (project) {
                         return React.createElement(
                             GridTile,
                             {
-                                key: tile.img,
-                                title: tile.title,
+                                key: project.img,
+                                title: project.title,
                                 subtitle: React.createElement(
-                                    'span',
+                                    "span",
                                     null,
-                                    'by ',
+                                    "by ",
                                     React.createElement(
-                                        'b',
+                                        "b",
                                         null,
-                                        tile.author
+                                        project.author
                                     )
                                 ),
                                 actionIcon: React.createElement(
                                     IconButton,
                                     null,
-                                    React.createElement(StarBorder, { color: 'white' })
+                                    React.createElement(StarBorder, { color: "white" })
                                 )
                             },
-                            React.createElement('img', { src: tile.img })
+                            React.createElement(
+                                RouteLink,
+                                { vm: _this.props.vm, route: project.Route },
+                                React.createElement("img", { src: project.img })
+                            )
                         );
                     })
+                ),
+                React.createElement("div", { id: "ProjectPanel" })
+            )
+        );
+    }
+});
+
+var ProjectDefault = function ProjectDefault(props) {
+    return React.createElement("div", null);
+};
+
+var Project = React.createClass({
+    displayName: "Project",
+
+    getInitialState: function getInitialState() {
+        this.vm = dotnetify.react.connect("ProjectVM", this);
+        return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
+    },
+    componentWillUnmount: function componentWillUnmount() {
+        this.vm.$destroy();
+    },
+    render: function render() {
+        var _this2 = this;
+
+        var project = this.state.Project;
+
+        var handleClose = function handleClose() {
+            _this2.setState({ open: false });
+            window.history.back();
+        };
+
+        var actions = [React.createElement(FlatButton, { label: "Back", primary: true, onTouchTap: handleClose })];
+
+        return React.createElement(
+            MuiThemeProvider,
+            null,
+            React.createElement(
+                Dialog,
+                { open: this.state.open, actions: actions },
+                React.createElement(
+                    "div",
+                    { className: "row", style: { minHeight: "380px" } },
+                    React.createElement(
+                        "div",
+                        { className: "col-md-4" },
+                        React.createElement("img", { className: "thumbnail", src: project.ImageUrl })
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "col-md-8" },
+                        React.createElement(
+                            "h3",
+                            null,
+                            project.Title
+                        ),
+                        React.createElement(
+                            "h5",
+                            null,
+                            project.Author
+                        ),
+                        React.createElement("br", null),
+                        React.createElement(
+                            RaisedButton,
+                            { primary: true },
+                            "Buy"
+                        )
+                    )
                 )
             )
         );
