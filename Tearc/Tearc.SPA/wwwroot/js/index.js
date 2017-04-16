@@ -39,95 +39,7 @@ var Index = React.createClass({
             listItem: { paddingLeft: "20px" },
             bullet: { color: "rgba(255,205,0,.8)", transform: "scale(.5)" },
             copyright: { color: "rgb(125,135,140)", fontSize: "8pt" },
-            hide: { display: "none" },
-            root: {
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around'
-            },
-            gridList: {
-                width: 500,
-                height: 450,
-                overflowY: 'auto'
-            }
-        };
-
-        var tilesData = [{
-            img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-            title: 'Breakfast',
-            author: 'jill111'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-            title: 'Tasty burger',
-            author: 'pashminu'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-            title: 'Camera',
-            author: 'Danson67'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-            title: 'Morning',
-            author: 'fancycrave1'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-            title: 'Hats',
-            author: 'Hans'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-            title: 'Honey',
-            author: 'fancycravel'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-            title: 'Vegetables',
-            author: 'jill111'
-        }, {
-            img: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-            title: 'Water plant',
-            author: 'BkrmadtyaKarki'
-        }];
-
-        var GridListExampleSimple = function GridListExampleSimple() {
-            return React.createElement(
-                "div",
-                { style: styles.root },
-                React.createElement(
-                    GridList,
-                    {
-                        cellHeight: 180,
-                        style: styles.gridList
-                    },
-                    React.createElement(
-                        Subheader,
-                        null,
-                        "December"
-                    ),
-                    tilesData.map(function (tile) {
-                        return React.createElement(
-                            GridTile,
-                            {
-                                key: tile.img,
-                                title: tile.title,
-                                subtitle: React.createElement(
-                                    "span",
-                                    null,
-                                    "by ",
-                                    React.createElement(
-                                        "b",
-                                        null,
-                                        tile.author
-                                    )
-                                ),
-                                actionIcon: React.createElement(
-                                    IconButton,
-                                    null,
-                                    React.createElement(StarBorder, { color: "white" })
-                                )
-                            },
-                            React.createElement("img", { src: tile.img })
-                        );
-                    })
-                )
-            );
+            hide: { display: "none" }
         };
 
         var setSelectedLink = function setSelectedLink(linkId) {
@@ -240,11 +152,7 @@ var Index = React.createClass({
                             )
                         )
                     ),
-                    React.createElement(
-                        "div",
-                        { id: "Content" },
-                        GridListExampleSimple
-                    )
+                    React.createElement("div", { id: "Content" })
                 )
             )
         );

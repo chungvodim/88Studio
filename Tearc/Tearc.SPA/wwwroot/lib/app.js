@@ -13,6 +13,7 @@ DoughnutChart = require("react-chartjs").Doughnut;
 MuiThemeProvider = require("material-ui/styles/MuiThemeProvider").default;
 AppBar = require("material-ui/AppBar").default;
 GridList = require("material-ui/GridList").default;
+GridTile = require("material-ui/GridList").GridTile;
 baseTheme = require("material-ui/styles/baseThemes/lightBaseTheme").default;
 getMuiTheme = require("material-ui/styles/getMuiTheme").default;
 AutoComplete = require("material-ui/AutoComplete").default;

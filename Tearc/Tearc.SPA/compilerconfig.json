@@ -38,5 +38,9 @@
   {
     "outputFile": "wwwroot/js/BookStore.js",
     "inputFile": "wwwroot/js/BookStore.jsx"
+  },
+  {
+    "outputFile": "wwwroot/js/Projects.js",
+    "inputFile": "wwwroot/js/Projects.jsx"
   }
 ]

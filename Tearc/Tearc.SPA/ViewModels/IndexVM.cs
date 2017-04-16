@@ -44,7 +44,7 @@ namespace ViewModels
             _localizer = localizer;
             this.RegisterRoutes("index", new List<RouteTemplate>
          {
-            new RouteTemplate("Home",           "/module/get/HelloWorld/HelloWorldVM") { UrlPattern = "", ViewUrl = "HelloWorld" },
+            new RouteTemplate("Home",           "/module/get/Projects/ProjectsVM") { UrlPattern = "", ViewUrl = "Projects" },
             new RouteTemplate("HelloWorld",     "/module/get/HelloWorld/HelloWorldVM"),
             new RouteTemplate("ControlTypes",   "/module/get/ControlTypes/ControlTypesVM"),
             new RouteTemplate("SimpleList",     "/module/get/SimpleList/SimpleListVM" ),
