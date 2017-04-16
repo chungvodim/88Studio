@@ -6,7 +6,10 @@ var Projects = React.createClass({
         this.vm = dotnetify.react.connect("ProjectsVM", this);
         this.vm.onRouteEnter = (path, template) => template.Target = "ProjectPanel";
 
-        return window.vmStates.ProjectsVM;
+        var state = window.vmStates.ProjectsVM;
+        console.log("number of project: " + state.Projects.length);
+        return state;
+
     },
     componentWillUnmount() {
         this.vm.$destroy();
@@ -27,44 +30,44 @@ var Projects = React.createClass({
 
         const projectsData = [
             {
-                img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-                title: 'Breakfast',
-                author: 'jill111',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
+                Title: 'Breakfast',
+                Author: 'jill111',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-                title: 'Tasty burger',
-                author: 'pashminu',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
+                Title: 'Tasty burger',
+                Author: 'pashminu',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-                title: 'Camera',
-                author: 'Danson67',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
+                Title: 'Camera',
+                Author: 'Danson67',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-                title: 'Morning',
-                author: 'fancycrave1',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
+                Title: 'Morning',
+                Author: 'fancycrave1',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-                title: 'Hats',
-                author: 'Hans',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
+                Title: 'Hats',
+                Author: 'Hans',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-                title: 'Honey',
-                author: 'fancycravel',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
+                Title: 'Honey',
+                Author: 'fancycravel',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-                title: 'Vegetables',
-                author: 'jill111',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
+                Title: 'Vegetables',
+                Author: 'jill111',
             },
             {
-                img: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-                title: 'Water plant',
-                author: 'BkrmadtyaKarki',
+                ImageUrl: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
+                Title: 'Water plant',
+                Author: 'BkrmadtyaKarki',
             },
         ];
 
@@ -76,16 +79,16 @@ var Projects = React.createClass({
                         cellHeight={'auto'}
                         style={styles.gridList}
                     >
-                        <Subheader>{this.state.LocalizedStrings.ProjectNav}</Subheader>
-                        {projectsData.map((project) => (
+                        <Subheader>{"number of project: " + this.state.Projects.length}</Subheader>
+                        {this.state.Projects.map((project) => (
                             <GridTile
-                                key={project.img}
-                                title={project.title}
-                                subtitle={<span>by <b>{project.author}</b></span>}
+                                key={project.Info.ImageUrl}
+                                title={project.Info.Title}
+                                subtitle={<span>by <b>{project.Info.Author}</b></span>}
                                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                             >
-                                <RouteLink vm={this.props.vm} route={project.Route}>
-                                    <img src={project.img} />
+                                <RouteLink vm={this.vm} route={project.Route}>
+                                    <img src={project.Info.ImageUrl} />
                                 </RouteLink>
                             </GridTile>
                         ))}

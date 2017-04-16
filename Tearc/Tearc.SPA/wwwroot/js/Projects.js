@@ -11,7 +11,9 @@ var Projects = React.createClass({
             return template.Target = "ProjectPanel";
         };
 
-        return window.vmStates.ProjectsVM;
+        var state = window.vmStates.ProjectsVM;
+        console.log("number of project: " + state.Projects.length);
+        return state;
     },
     componentWillUnmount: function componentWillUnmount() {
         this.vm.$destroy();
@@ -33,37 +35,37 @@ var Projects = React.createClass({
         };
 
         var projectsData = [{
-            img: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-            title: 'Breakfast',
-            author: 'jill111'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
+            Title: 'Breakfast',
+            Author: 'jill111'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-            title: 'Tasty burger',
-            author: 'pashminu'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
+            Title: 'Tasty burger',
+            Author: 'pashminu'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-            title: 'Camera',
-            author: 'Danson67'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
+            Title: 'Camera',
+            Author: 'Danson67'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-            title: 'Morning',
-            author: 'fancycrave1'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
+            Title: 'Morning',
+            Author: 'fancycrave1'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-            title: 'Hats',
-            author: 'Hans'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
+            Title: 'Hats',
+            Author: 'Hans'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-            title: 'Honey',
-            author: 'fancycravel'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
+            Title: 'Honey',
+            Author: 'fancycravel'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-            title: 'Vegetables',
-            author: 'jill111'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
+            Title: 'Vegetables',
+            Author: 'jill111'
         }, {
-            img: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-            title: 'Water plant',
-            author: 'BkrmadtyaKarki'
+            ImageUrl: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
+            Title: 'Water plant',
+            Author: 'BkrmadtyaKarki'
         }];
 
         return React.createElement(
@@ -82,14 +84,14 @@ var Projects = React.createClass({
                     React.createElement(
                         Subheader,
                         null,
-                        this.state.LocalizedStrings.ProjectNav
+                        "number of project: " + this.state.Projects.length
                     ),
-                    projectsData.map(function (project) {
+                    this.state.Projects.map(function (project) {
                         return React.createElement(
                             GridTile,
                             {
-                                key: project.img,
-                                title: project.title,
+                                key: project.Info.ImageUrl,
+                                title: project.Info.Title,
                                 subtitle: React.createElement(
                                     "span",
                                     null,
@@ -97,7 +99,7 @@ var Projects = React.createClass({
                                     React.createElement(
                                         "b",
                                         null,
-                                        project.author
+                                        project.Info.Author
                                     )
                                 ),
                                 actionIcon: React.createElement(
@@ -108,8 +110,8 @@ var Projects = React.createClass({
                             },
                             React.createElement(
                                 RouteLink,
-                                { vm: _this.props.vm, route: project.Route },
-                                React.createElement("img", { src: project.img })
+                                { vm: _this.vm, route: project.Route },
+                                React.createElement("img", { src: project.Info.ImageUrl })
                             )
                         );
                     })
