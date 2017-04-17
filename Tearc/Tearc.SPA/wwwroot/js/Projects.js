@@ -32,40 +32,6 @@ var Projects = React.createClass({
             }
         };
 
-        var projectsData = [{
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-            Title: 'Breakfast',
-            Author: 'jill111'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-            Title: 'Tasty burger',
-            Author: 'pashminu'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-            Title: 'Camera',
-            Author: 'Danson67'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-            Title: 'Morning',
-            Author: 'fancycrave1'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-            Title: 'Hats',
-            Author: 'Hans'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-            Title: 'Honey',
-            Author: 'fancycravel'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-            Title: 'Vegetables',
-            Author: 'jill111'
-        }, {
-            ImageUrl: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-            Title: 'Water plant',
-            Author: 'BkrmadtyaKarki'
-        }];
-
         if (this.state.Projects == null) {
             return React.createElement("div", null);
         } else {
@@ -133,13 +99,26 @@ var Project = React.createClass({
 
     getInitialState: function getInitialState() {
         this.vm = dotnetify.react.connect("ProjectDetailsVM", this);
-        return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
+        return window.vmStates.ProjectDetailsVM;
     },
     componentWillUnmount: function componentWillUnmount() {
         this.vm.$destroy();
     },
     render: function render() {
         var _this2 = this;
+
+        var styles = {
+            root: {
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around'
+            },
+            gridList: {
+                width: '100%',
+                height: 'auto',
+                overflowY: 'none'
+            }
+        };
 
         var project = this.state.Project;
 
@@ -149,6 +128,32 @@ var Project = React.createClass({
         };
 
         var actions = [React.createElement(FlatButton, { label: "Back", primary: true, onTouchTap: handleClose })];
+
+        var gridlist = project.ImageUrls.map(function (ImageUrl) {
+            return React.createElement(
+                GridTile,
+                {
+                    key: ImageUrl,
+                    title: project.Info.Title,
+                    subtitle: React.createElement(
+                        "span",
+                        null,
+                        "by ",
+                        React.createElement(
+                            "b",
+                            null,
+                            project.Info.Author
+                        )
+                    ),
+                    actionIcon: React.createElement(
+                        IconButton,
+                        null,
+                        React.createElement(StarBorder, { color: "white" })
+                    )
+                },
+                React.createElement("img", { className: "thumbnail", src: ImageUrl })
+            );
+        });
 
         return React.createElement(
             MuiThemeProvider,
@@ -162,7 +167,14 @@ var Project = React.createClass({
                     React.createElement(
                         "div",
                         { className: "col-md-4" },
-                        React.createElement("img", { className: "thumbnail", src: project.ImageUrl })
+                        React.createElement(
+                            GridList,
+                            {
+                                cellHeight: 'auto',
+                                style: styles.gridList
+                            },
+                            gridlist
+                        )
                     ),
                     React.createElement(
                         "div",

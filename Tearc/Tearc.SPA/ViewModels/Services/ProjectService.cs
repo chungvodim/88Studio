@@ -15,6 +15,7 @@ namespace ViewModels
       public string Author { get; set; }
       public float Rating { get; set; }
       public string ImageUrl { get; set; }
+      public string[] ImageUrls { get; set; }
       public string ItemUrl { get; set; }
       public string UrlSafeTitle => ToUrlSafe(Title);
 

@@ -26,49 +26,6 @@ var Projects = React.createClass({
             }
         }
 
-        const projectsData = [
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/00-52-29-429_640.jpg',
-                Title: 'Breakfast',
-                Author: 'jill111',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/burger-827309_640.jpg',
-                Title: 'Tasty burger',
-                Author: 'pashminu',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/camera-813814_640.jpg',
-                Title: 'Camera',
-                Author: 'Danson67',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/morning-819362_640.jpg',
-                Title: 'Morning',
-                Author: 'fancycrave1',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/hats-829509_640.jpg',
-                Title: 'Hats',
-                Author: 'Hans',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/honey-823614_640.jpg',
-                Title: 'Honey',
-                Author: 'fancycravel',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/vegetables-790022_640.jpg',
-                Title: 'Vegetables',
-                Author: 'jill111',
-            },
-            {
-                ImageUrl: 'http://www.material-ui.com/images/grid-list/water-plant-821293_640.jpg',
-                Title: 'Water plant',
-                Author: 'BkrmadtyaKarki',
-            },
-        ];
-
         if (this.state.Projects == null) {
             return <div></div>
         }
