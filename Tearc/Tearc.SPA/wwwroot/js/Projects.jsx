@@ -67,12 +67,25 @@ var ProjectDefault = function (props) {
 var Project = React.createClass({
     getInitialState() {
         this.vm = dotnetify.react.connect("ProjectDetailsVM", this);
-        return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
+        return { Project: { Title: "", ImageUrl: "", ImageUrls: [], Author: "", ItemUrl: "" }, open: true };
     },
     componentWillUnmount() {
         this.vm.$destroy();
     },
     render() {
+        const styles = {
+            root: {
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+            },
+            gridList: {
+                width: '100%',
+                height: 'auto',
+                overflowY: 'none',
+            }
+        }
+
         var project = this.state.Project;
 
         const handleClose = () => {
@@ -82,18 +95,34 @@ var Project = React.createClass({
 
         const actions = [<FlatButton label="Back" primary={true} onTouchTap={handleClose} />]
 
+        console.log("fuck" + project.ImageUrls.length);
+
+        const gridTiles = project.ImageUrls.map(imageUrl =>
+            <GridTile
+                key={imageUrl}
+                title={project.Title}
+                subtitle={<span>by <b>{project.Author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+            >
+                <img className="thumbnail" src={imageUrl} />
+            </GridTile>
+        )
+
         return (
             <MuiThemeProvider>
                 <Dialog open={this.state.open} actions={actions}>
                     <div className="row" style={{ minHeight: "380px" }}>
                         <div className="col-md-4">
-                            <img className="thumbnail" src={project.ImageUrl} />
+                            <GridList
+                                cellHeight={180}
+                                style={styles.gridList}
+                            >
+                                {gridTiles}
+                            </GridList>
                         </div>
                         <div className="col-md-8">
                             <h3>{project.Title}</h3>
                             <h5>{project.Author}</h5>
-                            <br />
-                            <RaisedButton primary={true}>Buy</RaisedButton>
                         </div>
                     </div>
                 </Dialog>
