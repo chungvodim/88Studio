@@ -99,26 +99,13 @@ var Project = React.createClass({
 
     getInitialState: function getInitialState() {
         this.vm = dotnetify.react.connect("ProjectDetailsVM", this);
-        return window.vmStates.ProjectDetailsVM;
+        return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
     },
     componentWillUnmount: function componentWillUnmount() {
         this.vm.$destroy();
     },
     render: function render() {
         var _this2 = this;
-
-        var styles = {
-            root: {
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around'
-            },
-            gridList: {
-                width: '100%',
-                height: 'auto',
-                overflowY: 'none'
-            }
-        };
 
         var project = this.state.Project;
 
@@ -128,32 +115,6 @@ var Project = React.createClass({
         };
 
         var actions = [React.createElement(FlatButton, { label: "Back", primary: true, onTouchTap: handleClose })];
-
-        var gridlist = project.ImageUrls.map(function (ImageUrl) {
-            return React.createElement(
-                GridTile,
-                {
-                    key: ImageUrl,
-                    title: project.Info.Title,
-                    subtitle: React.createElement(
-                        "span",
-                        null,
-                        "by ",
-                        React.createElement(
-                            "b",
-                            null,
-                            project.Info.Author
-                        )
-                    ),
-                    actionIcon: React.createElement(
-                        IconButton,
-                        null,
-                        React.createElement(StarBorder, { color: "white" })
-                    )
-                },
-                React.createElement("img", { className: "thumbnail", src: ImageUrl })
-            );
-        });
 
         return React.createElement(
             MuiThemeProvider,
@@ -167,14 +128,7 @@ var Project = React.createClass({
                     React.createElement(
                         "div",
                         { className: "col-md-4" },
-                        React.createElement(
-                            GridList,
-                            {
-                                cellHeight: 'auto',
-                                style: styles.gridList
-                            },
-                            gridlist
-                        )
+                        React.createElement("img", { className: "thumbnail", src: project.ImageUrl })
                     ),
                     React.createElement(
                         "div",
