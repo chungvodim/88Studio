@@ -11,9 +11,7 @@ var Projects = React.createClass({
             return template.Target = "ProjectPanel";
         };
 
-        var state = window.vmStates.ProjectsVM;
-        console.log("number of project: " + state.Projects.length);
-        return state;
+        return window.vmStates.ProjectsVM;
     },
     componentWillUnmount: function componentWillUnmount() {
         this.vm.$destroy();
@@ -68,57 +66,61 @@ var Projects = React.createClass({
             Author: 'BkrmadtyaKarki'
         }];
 
-        return React.createElement(
-            MuiThemeProvider,
-            null,
-            React.createElement(
-                "div",
-                { style: styles.root },
+        if (this.state.Projects == null) {
+            return React.createElement("div", null);
+        } else {
+            return React.createElement(
+                MuiThemeProvider,
+                null,
                 React.createElement(
-                    GridList,
-                    {
-                        cols: 4,
-                        cellHeight: 'auto',
-                        style: styles.gridList
-                    },
+                    "div",
+                    { style: styles.root },
                     React.createElement(
-                        Subheader,
-                        null,
-                        "number of project: " + this.state.Projects.length
-                    ),
-                    this.state.Projects.map(function (project) {
-                        return React.createElement(
-                            GridTile,
-                            {
-                                key: project.Info.ImageUrl,
-                                title: project.Info.Title,
-                                subtitle: React.createElement(
-                                    "span",
-                                    null,
-                                    "by ",
-                                    React.createElement(
-                                        "b",
+                        GridList,
+                        {
+                            cols: 4,
+                            cellHeight: 'auto',
+                            style: styles.gridList
+                        },
+                        React.createElement(
+                            Subheader,
+                            null,
+                            "number of project: " + this.state.Projects.length
+                        ),
+                        this.state.Projects.map(function (project) {
+                            return React.createElement(
+                                GridTile,
+                                {
+                                    key: project.Info.ImageUrl,
+                                    title: project.Info.Title,
+                                    subtitle: React.createElement(
+                                        "span",
                                         null,
-                                        project.Info.Author
+                                        "by ",
+                                        React.createElement(
+                                            "b",
+                                            null,
+                                            project.Info.Author
+                                        )
+                                    ),
+                                    actionIcon: React.createElement(
+                                        IconButton,
+                                        null,
+                                        React.createElement(StarBorder, { color: "white" })
                                     )
-                                ),
-                                actionIcon: React.createElement(
-                                    IconButton,
-                                    null,
-                                    React.createElement(StarBorder, { color: "white" })
+                                },
+                                React.createElement(
+                                    RouteLink,
+                                    { vm: _this.vm, route: project.Route },
+                                    React.createElement("img", { src: project.Info.ImageUrl })
                                 )
-                            },
-                            React.createElement(
-                                RouteLink,
-                                { vm: _this.vm, route: project.Route },
-                                React.createElement("img", { src: project.Info.ImageUrl })
-                            )
-                        );
-                    })
-                ),
-                React.createElement("div", { id: "ProjectPanel" })
-            )
-        );
+                            );
+                        })
+                    ),
+                    React.createElement("div", { id: "ProjectPanel" })
+                )
+            );
+        }
     }
 });
 
@@ -130,7 +132,7 @@ var Project = React.createClass({
     displayName: "Project",
 
     getInitialState: function getInitialState() {
-        this.vm = dotnetify.react.connect("ProjectVM", this);
+        this.vm = dotnetify.react.connect("ProjectDetailsVM", this);
         return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
     },
     componentWillUnmount: function componentWillUnmount() {

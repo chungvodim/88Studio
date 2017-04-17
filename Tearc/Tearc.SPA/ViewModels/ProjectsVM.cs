@@ -45,10 +45,10 @@ namespace ViewModels
             {
                 if (!string.IsNullOrEmpty(e.From))
                 {
-                    // Extract the book title from the route path.
-                    var bookTitle = e.From.Replace("project/", "");
+                    // Extract the project title from the route path.
+                    var projectTitle = e.From.Replace("project/", "");
 
-                    Project = _projectsService.GetProjectByTitle(bookTitle);
+                    Project = _projectsService.GetProjectByTitle(projectTitle);
                     Changed(nameof(Project));
                 }
             });

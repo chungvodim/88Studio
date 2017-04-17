@@ -26,6 +26,7 @@ namespace ViewModels
 
         public List<Link> BasicExampleLinks => new List<Link>
       {
+         new Link { Route = this.GetRoute("Projects"), Caption = "Projectss", Description = "Projectsss"  },
          new Link { Route = this.GetRoute("HelloWorld"), Caption = "Hello World", Description = "Getting familiar with the basics"  },
          new Link { Route = this.GetRoute("ControlTypes"), Caption = "Control Types", Description = "Using various HTML control types"  },
          new Link { Route = this.GetRoute("SimpleList"), Caption = "Simple List", Description = "Simple CRUD list"  }
@@ -45,6 +46,7 @@ namespace ViewModels
             this.RegisterRoutes("index", new List<RouteTemplate>
          {
             new RouteTemplate("Home",           "/module/get/Projects/ProjectsVM") { UrlPattern = "", ViewUrl = "Projects" },
+            new RouteTemplate("Projects",        "/module/get/Projects/ProjectsVM"),
             new RouteTemplate("HelloWorld",     "/module/get/HelloWorld/HelloWorldVM"),
             new RouteTemplate("ControlTypes",   "/module/get/ControlTypes/ControlTypesVM"),
             new RouteTemplate("SimpleList",     "/module/get/SimpleList/SimpleListVM" ),

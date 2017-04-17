@@ -6,9 +6,7 @@ var Projects = React.createClass({
         this.vm = dotnetify.react.connect("ProjectsVM", this);
         this.vm.onRouteEnter = (path, template) => template.Target = "ProjectPanel";
 
-        var state = window.vmStates.ProjectsVM;
-        console.log("number of project: " + state.Projects.length);
-        return state;
+        return window.vmStates.ProjectsVM;
 
     },
     componentWillUnmount() {
@@ -71,32 +69,37 @@ var Projects = React.createClass({
             },
         ];
 
-        return (
-            <MuiThemeProvider>
-                <div style={styles.root}>
-                    <GridList
-                        cols={4}
-                        cellHeight={'auto'}
-                        style={styles.gridList}
-                    >
-                        <Subheader>{"number of project: " + this.state.Projects.length}</Subheader>
-                        {this.state.Projects.map((project) => (
-                            <GridTile
-                                key={project.Info.ImageUrl}
-                                title={project.Info.Title}
-                                subtitle={<span>by <b>{project.Info.Author}</b></span>}
-                                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                            >
-                                <RouteLink vm={this.vm} route={project.Route}>
-                                    <img src={project.Info.ImageUrl} />
-                                </RouteLink>
-                            </GridTile>
-                        ))}
-                    </GridList>
-                    <div id="ProjectPanel" />
-                </div>
-            </MuiThemeProvider>
-        );
+        if (this.state.Projects == null) {
+            return <div></div>
+        }
+        else {
+            return (
+                <MuiThemeProvider>
+                    <div style={styles.root}>
+                        <GridList
+                            cols={4}
+                            cellHeight={'auto'}
+                            style={styles.gridList}
+                        >
+                            <Subheader>{"number of project: " + this.state.Projects.length}</Subheader>
+                            {this.state.Projects.map((project) => (
+                                <GridTile
+                                    key={project.Info.ImageUrl}
+                                    title={project.Info.Title}
+                                    subtitle={<span>by <b>{project.Info.Author}</b></span>}
+                                    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                                >
+                                    <RouteLink vm={this.vm} route={project.Route}>
+                                        <img src={project.Info.ImageUrl} />
+                                    </RouteLink>
+                                </GridTile>
+                            ))}
+                        </GridList>
+                        <div id="ProjectPanel" />
+                    </div>
+                </MuiThemeProvider>
+            );
+        }
     }
 });
 
@@ -106,7 +109,7 @@ var ProjectDefault = function (props) {
 
 var Project = React.createClass({
     getInitialState() {
-        this.vm = dotnetify.react.connect("ProjectVM", this);
+        this.vm = dotnetify.react.connect("ProjectDetailsVM", this);
         return { Project: { Title: "", ImageUrl: "", Author: "", ItemUrl: "" }, open: true };
     },
     componentWillUnmount() {
