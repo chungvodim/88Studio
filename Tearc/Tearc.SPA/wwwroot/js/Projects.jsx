@@ -82,7 +82,9 @@ var Project = React.createClass({
             gridList: {
                 width: '100%',
                 height: 'auto',
-                overflowY: 'none',
+                overflowY: 'auto',
+                flexWrap: 'nowrap',
+                overflowX: 'auto',
             }
         }
 
@@ -99,12 +101,8 @@ var Project = React.createClass({
 
         const gridTiles = project.ImageUrls.map(imageUrl =>
             <GridTile
-                key={imageUrl}
-                title={project.Title}
-                subtitle={<span>by <b>{project.Author}</b></span>}
-                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
             >
-                <img className="thumbnail" src={imageUrl} />
+                <img src={imageUrl} />
             </GridTile>
         )
 
@@ -112,15 +110,15 @@ var Project = React.createClass({
             <MuiThemeProvider>
                 <Dialog open={this.state.open} actions={actions}>
                     <div className="row" style={{ minHeight: "380px" }}>
-                        <div className="col-md-4">
+                        <div className="col-md-12">
                             <GridList
-                                cellHeight={180}
+                                cellHeight={200}
                                 style={styles.gridList}
                             >
                                 {gridTiles}
                             </GridList>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-12">
                             <h3>{project.Title}</h3>
                             <h5>{project.Author}</h5>
                         </div>

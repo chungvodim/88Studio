@@ -116,7 +116,9 @@ var Project = React.createClass({
             gridList: {
                 width: '100%',
                 height: 'auto',
-                overflowY: 'none'
+                overflowY: 'auto',
+                flexWrap: 'nowrap',
+                overflowX: 'auto'
             }
         };
 
@@ -134,26 +136,8 @@ var Project = React.createClass({
         var gridTiles = project.ImageUrls.map(function (imageUrl) {
             return React.createElement(
                 GridTile,
-                {
-                    key: imageUrl,
-                    title: project.Title,
-                    subtitle: React.createElement(
-                        "span",
-                        null,
-                        "by ",
-                        React.createElement(
-                            "b",
-                            null,
-                            project.Author
-                        )
-                    ),
-                    actionIcon: React.createElement(
-                        IconButton,
-                        null,
-                        React.createElement(StarBorder, { color: "white" })
-                    )
-                },
-                React.createElement("img", { className: "thumbnail", src: imageUrl })
+                null,
+                React.createElement("img", { src: imageUrl })
             );
         });
 
@@ -168,11 +152,11 @@ var Project = React.createClass({
                     { className: "row", style: { minHeight: "380px" } },
                     React.createElement(
                         "div",
-                        { className: "col-md-4" },
+                        { className: "col-md-12" },
                         React.createElement(
                             GridList,
                             {
-                                cellHeight: 180,
+                                cellHeight: 200,
                                 style: styles.gridList
                             },
                             gridTiles
@@ -180,7 +164,7 @@ var Project = React.createClass({
                     ),
                     React.createElement(
                         "div",
-                        { className: "col-md-8" },
+                        { className: "col-md-12" },
                         React.createElement(
                             "h3",
                             null,
