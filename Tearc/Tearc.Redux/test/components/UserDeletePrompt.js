@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import assert from "assert";
-import UserDeletePrompt from "../../src/components/common/UserDeletePrompt";
+import UserDeletePrompt from "../../src/components/user/UserDeletePrompt";
 
 // unit tests for the UserDeletePrompt component
 describe('UserDeletePrompt component', () => {
