@@ -1,5 +1,5 @@
 import React from "react";
-import UserList from "./common/UserList";
+import UserList from "../components/common/UserList";
 
 // Home page component
 export default class Home extends React.Component {
