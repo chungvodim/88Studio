@@ -41,7 +41,6 @@ export class Galleries extends React.Component {
         <Table bordered hover responsive striped>
           <thead>
           <tr>
-            <th>ID</th>
             <th>Title</th>
             <th>URL</th>
             <th>Edit</th>

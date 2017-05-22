@@ -14,7 +14,7 @@ export default class ApiUsers {
           });
         }
         resolve(users);
-      }, 1000);
+      }, 100);
     });
   }
 
@@ -24,7 +24,7 @@ export default class ApiUsers {
       setTimeout(() => {
         // do something here
         resolve();
-      }, 1000);
+      }, 100);
     });
   }
 
@@ -34,7 +34,7 @@ export default class ApiUsers {
       setTimeout(() => {
         // do something here
         resolve();
-      }, 500);
+      }, 100);
     });
   }
 }

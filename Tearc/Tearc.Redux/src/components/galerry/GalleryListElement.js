@@ -10,7 +10,6 @@ export default class GalleryListElement extends React.Component {
     const {gallery, showDelete} = this.props;
     return (
       <tr>
-        <td>#{gallery.id}</td>
         <td>{gallery.title}</td>
         <td><img src={gallery.url}/></td>
         <td>
