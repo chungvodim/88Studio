@@ -69,7 +69,7 @@ describe('Users saga', () => {
 
   describe('usersDelete()', () => {
     const action = {
-      user_id: 1,
+      gallery_id: 1,
     };
     const generator = usersDelete(action);
 
@@ -80,7 +80,7 @@ describe('Users saga', () => {
     it('should return the USERS_DELETE_SAVE action', () => {
       assert.deepEqual(generator.next().value, put({
         type: 'USERS_DELETE_SAVE',
-        user_id: action.user_id,
+        gallery_id: action.gallery_id,
       }));
     });
 

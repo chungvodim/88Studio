@@ -6,23 +6,11 @@ import "../stylesheets/main.scss";
 
 // App component
 // This is root component
-export class App extends React.Component {
-  // pre-render logic
-  componentWillMount() {
-    // the first time we load the app, we need that users list
-    // this.props.dispatch({type: 'USERS_FETCH_LIST'});
-    this.props.dispatch({type: 'GALLERY_FETCH_LIST'});
-  }
-
+export default class App extends React.Component {
   // render
   render() {
     // show the loading state while we wait for the app to load
-    const {galleries, children} = this.props;
-    if (!galleries.length) {
-      return (
-        <ProgressBar active now={100}/>
-      );
-    }
+    const {children} = this.props;
 
     // render
     return (
@@ -44,11 +32,3 @@ export class App extends React.Component {
     );
   }
 }
-
-// export the connected class
-function mapStateToProps(state) {
-  return {
-    galleries: state.galleries || [],
-  };
-}
-export default connect(mapStateToProps)(App);

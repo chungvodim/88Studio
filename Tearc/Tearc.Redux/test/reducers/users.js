@@ -95,7 +95,7 @@ describe('Users reducer', () => {
           job: 'Other job',
         }], {
           type: 'USERS_DELETE_SAVE',
-          user_id: 2,
+          gallery_id: 2,
         }), [{
           id: 1,
           username: 'Some name',
