@@ -5,6 +5,7 @@ import { Table, Pagination } from "react-bootstrap";
 import GalleryListElement from "./GalleryListElement";
 import GalleryDeletePrompt from "./GalleryDeletePrompt";
 import ImageGallery from 'react-image-gallery';
+const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
 
 // Gallery list component
 export class Galleries extends React.Component {
@@ -14,117 +15,200 @@ export class Galleries extends React.Component {
 
     // default ui local state
     this.state = {
-      delete_show: false,
-      delete_gallery: {},
+      showIndex: false,
+      slideOnThumbnailHover: false,
+      showBullets: true,
+      infinite: true,
+      showThumbnails: true,
+      showFullscreenButton: true,
+      showGalleryFullscreenButton: true,
+      showPlayButton: true,
+      showGalleryPlayButton: true,
+      showNav: true,
+      slideDuration: 450,
+      slideInterval: 2000,
+      thumbnailPosition: 'bottom',
+      showVideo: {},
     };
 
-    // bind <this> to the event method
-    this.changePage = this.changePage.bind(this);
-    this.showDelete = this.showDelete.bind(this);
-    this.hideDelete = this.hideDelete.bind(this);
-    this.galleryDelete = this.galleryDelete.bind(this);
+    this.images = [
+      {
+        original: `${PREFIX_URL}1.jpg`,
+        thumbnail: `${PREFIX_URL}1t.jpg`,
+        originalClass: 'featured-slide',
+        thumbnailClass: 'featured-thumb',
+        description: 'Custom class for slides & thumbnails'
+      },
+      {
+        thumbnail: `${PREFIX_URL}3v.jpg`,
+        original: `${PREFIX_URL}3v.jpg`,
+        embedUrl: 'https://www.youtube.com/embed/iNJdPyoqt8U?autoplay=1&showinfo=0',
+        description: 'Render custom slides within the gallery',
+        renderItem: this._renderVideo.bind(this)
+      },
+      {
+        thumbnail: `${PREFIX_URL}4v.jpg`,
+        original: `${PREFIX_URL}4v.jpg`,
+        embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
+        renderItem: this._renderVideo.bind(this)
+      }
+    ].concat(this._getStaticImages());
   }
 
-  // render
-  render() {
-    // pagination
-    // Get props from state : mapStateToProps
-    // In Redux, there're only 1 state that is managed by store
-    const {galleries, page} = this.props;
-    const per_page = 10;
-    const pages = Math.ceil(galleries.length / per_page);
-    const start_offset = (page - 1) * per_page;
-    let start_count = 0;
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.slideInterval !== prevState.slideInterval ||
+      this.state.slideDuration !== prevState.slideDuration) {
+      // refresh setInterval
+      this._imageGallery.pause();
+      this._imageGallery.play();
+    }
+  }
 
-    // show the list of galleries
-    // return (
-    //   <div>
-    //     <Table bordered hover responsive striped>
-    //       <thead>
-    //       <tr>
-    //         <th>Title</th>
-    //         <th>URL</th>
-    //         <th>Edit</th>
-    //         <th>Delete</th>
-    //       </tr>
-    //       </thead>
-    //       <tbody>
-    //       {galleries.map((gallery, index) => {
-    //         if (index >= start_offset && start_count < per_page) {
-    //           start_count++;
-    //           return (
-    //             <GalleryListElement key={index} gallery={gallery} showDelete={this.showDelete}/>
-    //           );
-    //         }
-    //       })}
-    //       </tbody>
-    //     </Table>
-    //
-    //     <Pagination className="galleries-pagination pull-right" bsSize="medium" maxButtons={10} first last next
-    //       prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
-    //
-    //     <GalleryDeletePrompt show={this.state.delete_show} gallery={this.state.delete_gallery}
-    //       hideDelete={this.hideDelete} galleryDelete={this.galleryDelete}/>
-    //   </div>
-    // );
+  _onImageClick(event) {
+    console.debug('clicked on image', event.target, 'at index', this._imageGallery.getCurrentIndex());
+  }
 
-    // show the list of galleries
-    const images = [
-      {
-        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/1.jpg',
-        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/1t.jpg',
-      },
-      {
-        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/3v.jpg',
-        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/3v.jpg'
-      },
-      {
-        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/4v.jpg',
-        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/4v.jpg'
+  _onImageLoad(event) {
+    console.debug('loaded image', event.target.src);
+  }
+
+  _onSlide(index) {
+    this._resetVideo();
+    console.debug('slid to index', index);
+  }
+
+  _onPause(index) {
+    console.debug('paused on index', index);
+  }
+
+  _onScreenChange(fullScreenElement) {
+    console.debug('isFullScreen?', !!fullScreenElement);
+  }
+
+  _onPlay(index) {
+    console.debug('playing from index', index);
+  }
+
+  _handleInputChange(state, event) {
+    this.setState({[state]: event.target.value});
+  }
+
+  _handleCheckboxChange(state, event) {
+    this.setState({[state]: event.target.checked});
+  }
+
+  _handleThumbnailPositionChange(event) {
+    this.setState({thumbnailPosition: event.target.value});
+  }
+
+  _getStaticImages() {
+    let images = [];
+    for (let i = 2; i < 12; i++) {
+      images.push({
+        original: `${PREFIX_URL}${i}.jpg`,
+        thumbnail:`${PREFIX_URL}${i}t.jpg`
+      });
+    }
+
+    return images;
+  }
+
+  _resetVideo() {
+    this.setState({showVideo: {}});
+
+    if (this.state.showPlayButton) {
+      this.setState({showGalleryPlayButton: true});
+    }
+
+    if (this.state.showFullscreenButton) {
+      this.setState({showGalleryFullscreenButton: true});
+    }
+  }
+
+  _toggleShowVideo(url) {
+    this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
+    this.setState({
+      showVideo: this.state.showVideo
+    });
+
+    if (this.state.showVideo[url]) {
+      if (this.state.showPlayButton) {
+        this.setState({showGalleryPlayButton: false});
       }
-    ]
 
+      if (this.state.showFullscreenButton) {
+        this.setState({showGalleryFullscreenButton: false});
+      }
+    }
+  }
+
+  _renderVideo(item) {
     return (
-      <ImageGallery
-        items={images}
-        slideInterval={2000}
-        onImageLoad={this.handleImageLoad}/>
+      <div className='image-gallery-image'>
+        {
+          this.state.showVideo[item.embedUrl] ?
+            <div className='video-wrapper'>
+              <a
+                className='close-video'
+                onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
+              >
+              </a>
+              <iframe
+                width='560'
+                height='315'
+                src={item.embedUrl}
+                frameBorder='0'
+                allowFullScreen
+              >
+              </iframe>
+            </div>
+            :
+            <a onClick={this._toggleShowVideo.bind(this, item.embedUrl)}>
+              <div className='play-button'></div>
+              <img src={item.original}/>
+              {
+                item.description &&
+                <span
+                  className='image-gallery-description'
+                  style={{right: '0', left: 'initial'}}
+                >
+                    {item.description}
+                  </span>
+              }
+            </a>
+        }
+      </div>
     );
   }
 
-  // change the gallery lists' current page
-  changePage(page) {
-    this.props.dispatch(push('/?page=' + page));
-  }
+  render() {
+    return (
 
-  // show the delete gallery prompt
-  showDelete(gallery) {
-    // change the local ui state
-    this.setState({
-      delete_show: true,
-      delete_gallery: gallery,
-    });
-  }
-
-  // hide the delete gallery prompt
-  hideDelete() {
-    // change the local ui state
-    this.setState({
-      delete_show: false,
-      delete_gallery: {},
-    });
-  }
-
-  // delete the gallery
-  galleryDelete() {
-    // delete the gallery
-    this.props.dispatch({
-      type: 'GALLERY_DELETE',
-      gallery_id: this.state.delete_gallery.id,
-    });
-
-    // hide the prompt
-    this.hideDelete();
+      <section className='app'>
+        <ImageGallery
+          ref={i => this._imageGallery = i}
+          items={this.images}
+          lazyLoad={false}
+          onClick={this._onImageClick.bind(this)}
+          onImageLoad={this._onImageLoad}
+          onSlide={this._onSlide.bind(this)}
+          onPause={this._onPause.bind(this)}
+          onScreenChange={this._onScreenChange.bind(this)}
+          onPlay={this._onPlay.bind(this)}
+          infinite={this.state.infinite}
+          showBullets={this.state.showBullets}
+          showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
+          showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
+          showThumbnails={this.state.showThumbnails}
+          showIndex={this.state.showIndex}
+          showNav={this.state.showNav}
+          thumbnailPosition={this.state.thumbnailPosition}
+          slideDuration={parseInt(this.state.slideDuration)}
+          slideInterval={parseInt(this.state.slideInterval)}
+          slideOnThumbnailHover={this.state.slideOnThumbnailHover}
+        />
+      </section>
+    );
   }
 }
 
