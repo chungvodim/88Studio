@@ -4,6 +4,7 @@ import { push } from "react-router-redux";
 import { Table, Pagination } from "react-bootstrap";
 import GalleryListElement from "./GalleryListElement";
 import GalleryDeletePrompt from "./GalleryDeletePrompt";
+import ImageGallery from 'react-image-gallery';
 
 // Gallery list component
 export class Galleries extends React.Component {
@@ -36,35 +37,58 @@ export class Galleries extends React.Component {
     let start_count = 0;
 
     // show the list of galleries
+    // return (
+    //   <div>
+    //     <Table bordered hover responsive striped>
+    //       <thead>
+    //       <tr>
+    //         <th>Title</th>
+    //         <th>URL</th>
+    //         <th>Edit</th>
+    //         <th>Delete</th>
+    //       </tr>
+    //       </thead>
+    //       <tbody>
+    //       {galleries.map((gallery, index) => {
+    //         if (index >= start_offset && start_count < per_page) {
+    //           start_count++;
+    //           return (
+    //             <GalleryListElement key={index} gallery={gallery} showDelete={this.showDelete}/>
+    //           );
+    //         }
+    //       })}
+    //       </tbody>
+    //     </Table>
+    //
+    //     <Pagination className="galleries-pagination pull-right" bsSize="medium" maxButtons={10} first last next
+    //       prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
+    //
+    //     <GalleryDeletePrompt show={this.state.delete_show} gallery={this.state.delete_gallery}
+    //       hideDelete={this.hideDelete} galleryDelete={this.galleryDelete}/>
+    //   </div>
+    // );
+
+    // show the list of galleries
+    const images = [
+      {
+        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/1.jpg',
+        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/1t.jpg',
+      },
+      {
+        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/3v.jpg',
+        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/3v.jpg'
+      },
+      {
+        original: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/4v.jpg',
+        thumbnail: 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/4v.jpg'
+      }
+    ]
+
     return (
-      <div>
-        <Table bordered hover responsive striped>
-          <thead>
-          <tr>
-            <th>Title</th>
-            <th>URL</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-          </thead>
-          <tbody>
-          {galleries.map((gallery, index) => {
-            if (index >= start_offset && start_count < per_page) {
-              start_count++;
-              return (
-                <GalleryListElement key={index} gallery={gallery} showDelete={this.showDelete}/>
-              );
-            }
-          })}
-          </tbody>
-        </Table>
-
-        <Pagination className="galleries-pagination pull-right" bsSize="medium" maxButtons={10} first last next
-          prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
-
-        <GalleryDeletePrompt show={this.state.delete_show} gallery={this.state.delete_gallery}
-          hideDelete={this.hideDelete} galleryDelete={this.galleryDelete}/>
-      </div>
+      <ImageGallery
+        items={images}
+        slideInterval={2000}
+        onImageLoad={this.handleImageLoad}/>
     );
   }
 
