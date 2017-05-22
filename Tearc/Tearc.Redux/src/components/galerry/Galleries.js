@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import { Table, Pagination } from "react-bootstrap";
 import GalleryListElement from "./GalleryListElement";
-import UserDeletePrompt from "./UserDeletePrompt";
+import GalleryDeletePrompt from "./GalleryDeletePrompt";
 
 // Gallery list component
 export class Galleries extends React.Component {
@@ -63,8 +63,8 @@ export class Galleries extends React.Component {
         <Pagination className="galleries-pagination pull-right" bsSize="medium" maxButtons={10} first last next
           prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
 
-        <UserDeletePrompt show={this.state.delete_show} user={this.state.delete_gallery}
-          hideDelete={this.hideDelete} userDelete={this.galleryDelete}/>
+        <GalleryDeletePrompt show={this.state.delete_show} gallery={this.state.delete_gallery}
+          hideDelete={this.hideDelete} galleryDelete={this.galleryDelete}/>
       </div>
     );
   }
@@ -96,7 +96,7 @@ export class Galleries extends React.Component {
   galleryDelete() {
     // delete the gallery
     this.props.dispatch({
-      type: 'USERS_DELETE',
+      type: 'GALLERY_DELETE',
       gallery_id: this.state.delete_gallery.id,
     });
 

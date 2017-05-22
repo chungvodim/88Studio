@@ -1,7 +1,7 @@
 import { takeLatest } from "redux-saga";
 import { fork } from "redux-saga/effects";
 import { usersFetchList, usersAddEdit, usersDelete } from "./users";
-import { galleryFetchList, galleryAddEdit, galleryDelete } from "./users";
+import { galleryFetchList, galleryAddEdit, galleryDelete } from "./galleries";
 
 // main saga generators
 // fork: Creates an Effect description that instructs the middleware to perform a non-blocking call on fn
@@ -12,8 +12,8 @@ export function* sagas() {
     fork(takeLatest, 'USERS_ADD_EDIT', usersAddEdit),
     fork(takeLatest, 'USERS_DELETE', usersDelete),
 
-    fork(takeLatest, 'GALLARY_FETCH_LIST', usersFetchList),
-    fork(takeLatest, 'GALLARY_ADD_EDIT', usersAddEdit),
-    fork(takeLatest, 'GALLARY_DELETE', usersDelete),
+    fork(takeLatest, 'GALLERY_FETCH_LIST', galleryFetchList),
+    fork(takeLatest, 'GALLERY_ADD_EDIT', galleryAddEdit),
+    fork(takeLatest, 'GALLERY_DELETE', galleryDelete),
   ];
 }

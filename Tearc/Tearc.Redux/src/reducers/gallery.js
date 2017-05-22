@@ -1,7 +1,7 @@
 // gallery reducer
 export default function gallery(state = {}, action) {
   switch (action.type) {
-    case 'GALLARY_FETCH_LIST_SAVE':
+    case 'GALLERY_FETCH_LIST_SAVE':
       return action.galleries;
 
     case 'GALLERY_ADD_SAVE':

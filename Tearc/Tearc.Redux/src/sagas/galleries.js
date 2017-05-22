@@ -9,7 +9,7 @@ export function* galleryFetchList(action) {
 
   // save the gallery in state
   yield put({
-    type: 'GALLARY_FETCH_LIST_SAVE',
+    type: 'GALLERY_FETCH_LIST_SAVE',
     galleries: galleries,
   });
 }

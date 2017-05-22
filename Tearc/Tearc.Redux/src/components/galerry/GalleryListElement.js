@@ -12,7 +12,7 @@ export default class GalleryListElement extends React.Component {
       <tr>
         <td>#{gallery.id}</td>
         <td>{gallery.title}</td>
-        <td>{gallery.url}</td>
+        <td><img src={gallery.url}/></td>
         <td>
           <Link to={'gallery-edit/' + gallery.id}>
             <Button bsSize="xsmall">
