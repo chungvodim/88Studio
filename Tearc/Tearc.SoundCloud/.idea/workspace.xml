@@ -4,8 +4,6 @@
     <list default="true" id="c0cf3f20-4bd0-453c-ba2e-ce41272e2b57" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Tearc.Redux/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Tearc.Redux/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Tearc.Redux/src/components/galerry/Galleries.js" afterPath="$PROJECT_DIR$/../Tearc.Redux/src/components/galerry/Galleries.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Tearc.Redux/src/stylesheets/main.scss" afterPath="$PROJECT_DIR$/../Tearc.Redux/src/stylesheets/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
