@@ -1,4 +1,5 @@
 import React from "react";
+import Galleries from "../components/galerry/Galleries";
 import UserList from "../components/user/UserList";
 
 // Home page component
