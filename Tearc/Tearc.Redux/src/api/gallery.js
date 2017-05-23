@@ -1,18 +1,11 @@
+const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
 // API Gallery static class
 export default class ApiGallery {
   // get galleries
   static getList() {
     return new Promise(resolve => {
       // build some dummy galleries list
-      let galleries = [];
-      for (let x = 1; x <= 28; x++) {
-        galleries.push({
-          id: x,
-          title: 'image ' + x,
-          url: 'http://2.pik.vn/2017c79ad7bf-91e7-4d04-9f99-dc00c9b3f0d8.jpg',
-        });
-      }
-      console.log("galleries length: " + galleries.length);
+      let galleries = ApiGallery._getVideos().concat(ApiGallery._getStaticImages());
       resolve(galleries);
     });
   }
@@ -31,5 +24,44 @@ export default class ApiGallery {
       // do something here
       resolve();
     });
+  }
+
+  // fake data
+  static _getStaticImages() {
+    let galleries = [];
+    for (let i = 2; i < 12; i++) {
+      galleries.push({
+        original: `${PREFIX_URL}${i}.jpg`,
+        thumbnail:`${PREFIX_URL}${i}t.jpg`
+      });
+    }
+
+    return galleries;
+  }
+
+  static _getVideos() {
+    let galleries = [
+      {
+        original: `${PREFIX_URL}1.jpg`,
+        thumbnail: `${PREFIX_URL}1t.jpg`,
+        originalClass: 'featured-slide',
+        thumbnailClass: 'featured-thumb',
+        description: '88Studio'
+      },
+      {
+        thumbnail: `${PREFIX_URL}3v.jpg`,
+        original: `${PREFIX_URL}3v.jpg`,
+        embedUrl: 'https://www.youtube.com/embed/iNJdPyoqt8U?autoplay=1&showinfo=0',
+        description: '88Studio'
+      },
+      {
+        thumbnail: `${PREFIX_URL}4v.jpg`,
+        original: `${PREFIX_URL}4v.jpg`,
+        embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
+        description: '88Studio'
+      }
+    ];
+
+    return galleries;
   }
 }

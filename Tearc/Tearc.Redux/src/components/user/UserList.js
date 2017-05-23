@@ -27,6 +27,8 @@ export class UserList extends React.Component {
   // render
   render() {
     // pagination
+    // Get props from state : mapStateToProps
+    // In Redux, there're 1 state that is managed by store
     const {users, page} = this.props;
     const per_page = 10;
     const pages = Math.ceil(users.length / per_page);

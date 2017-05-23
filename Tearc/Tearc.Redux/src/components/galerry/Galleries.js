@@ -31,29 +31,21 @@ export class Galleries extends React.Component {
       showVideo: {},
     };
 
-    this.images = [
-      {
-        original: `${PREFIX_URL}1.jpg`,
-        thumbnail: `${PREFIX_URL}1t.jpg`,
-        originalClass: 'featured-slide',
-        thumbnailClass: 'featured-thumb',
-        description: '88Studio'
-      },
-      {
-        thumbnail: `${PREFIX_URL}3v.jpg`,
-        original: `${PREFIX_URL}3v.jpg`,
-        embedUrl: 'https://www.youtube.com/embed/iNJdPyoqt8U?autoplay=1&showinfo=0',
-        description: '88Studio',
-        renderItem: this._renderVideo.bind(this)
-      },
-      {
-        thumbnail: `${PREFIX_URL}4v.jpg`,
-        original: `${PREFIX_URL}4v.jpg`,
-        embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
-        description: '88Studio',
-        renderItem: this._renderVideo.bind(this)
+    this.galleries = this.props.galleries;
+    this.galleries.map(g => {
+      if(typeof g.embedUrl !== "undefined" && g.embedUrl !== ""){
+        console.log("embedUrl: " + g.embedUrl);
+        g.renderItem = this._renderVideo.bind(this);
       }
-    ].concat(this._getStaticImages());
+      return g;
+    });
+  }
+
+  // pre-render logic
+  componentWillMount() {
+    // the first time we load the app, we need that users list
+    // this.props.dispatch({type: 'USERS_FETCH_LIST'});
+    this.props.dispatch({type: 'GALLERY_FETCH_LIST'});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -100,18 +92,6 @@ export class Galleries extends React.Component {
 
   _handleThumbnailPositionChange(event) {
     this.setState({thumbnailPosition: event.target.value});
-  }
-
-  _getStaticImages() {
-    let images = [];
-    for (let i = 2; i < 12; i++) {
-      images.push({
-        original: `${PREFIX_URL}${i}.jpg`,
-        thumbnail:`${PREFIX_URL}${i}t.jpg`
-      });
-    }
-
-    return images;
   }
 
   _resetVideo() {
@@ -183,12 +163,19 @@ export class Galleries extends React.Component {
   }
 
   render() {
+    // const {galleries} = this.props;
+    if (!this.galleries.length) {
+      return (
+        <ProgressBar active now={100}/>
+      );
+    }
+
     return (
 
       <section className='app'>
         <ImageGallery
           ref={i => this._imageGallery = i}
-          items={this.images}
+          items={this.galleries}
           lazyLoad={false}
           onClick={this._onImageClick.bind(this)}
           onImageLoad={this._onImageLoad}
