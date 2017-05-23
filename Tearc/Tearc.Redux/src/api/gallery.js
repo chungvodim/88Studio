@@ -4,9 +4,11 @@ export default class ApiGallery {
   // get galleries
   static getList() {
     return new Promise(resolve => {
-      // build some dummy galleries list
-      let galleries = ApiGallery._getVideos().concat(ApiGallery._getStaticImages());
-      resolve(galleries);
+      setTimeout(() => {
+        // build some dummy galleries list
+        let galleries = ApiGallery._getVideos().concat(ApiGallery._getStaticImages());
+        resolve(galleries);
+      }, 200);
     });
   }
 

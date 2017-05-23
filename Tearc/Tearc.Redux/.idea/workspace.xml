@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74811d29-54f6-428c-89f1-2860cdec2a30" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/gallery.js" afterPath="$PROJECT_DIR$/src/api/gallery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/galerry/Galleries.js" afterPath="$PROJECT_DIR$/src/components/galerry/Galleries.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/user/UserList.js" afterPath="$PROJECT_DIR$/src/components/user/UserList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Tearc.SoundCloud/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Tearc.SoundCloud/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Galleries.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Galleries.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/galerry/Galleries.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="725">
+              <caret line="194" column="28" lean-forward="false" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="n#!!block;n#_onImageClick#0;n#Galleries#0" expanded="false" />
@@ -54,11 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gallery.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gallery.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+            <state relative-caret-position="374">
+              <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -181,8 +188,8 @@
         <option value="$PROJECT_DIR$/src/stylesheets/main.scss" />
         <option value="$PROJECT_DIR$/src/components/user/UserList.js" />
         <option value="$PROJECT_DIR$/src/sagas/galleries.js" />
-        <option value="$PROJECT_DIR$/src/api/gallery.js" />
         <option value="$PROJECT_DIR$/src/components/galerry/Galleries.js" />
+        <option value="$PROJECT_DIR$/src/api/gallery.js" />
       </list>
     </option>
   </component>
@@ -572,12 +579,12 @@
       <workItem from="1495378232086" duration="4050000" />
       <workItem from="1495384171764" duration="1342000" />
       <workItem from="1495437520334" duration="14612000" />
-      <workItem from="1495508279851" duration="11279000" />
+      <workItem from="1495508279851" duration="11478000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71222000" />
+    <option name="totallyTimeSpent" value="71421000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -857,14 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/Users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -901,14 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/user/UserList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
@@ -919,8 +910,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/galerry/Galleries.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="725">
+          <caret line="194" column="28" lean-forward="false" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="n#!!block;n#_onImageClick#0;n#Galleries#0" expanded="false" />
@@ -935,6 +926,22 @@
             <element signature="n#!!block;n#_resetVideo#0;n#Galleries#0" expanded="false" />
             <element signature="n#!!block;n#_toggleShowVideo#0;n#Galleries#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
