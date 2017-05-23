@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ProgressBar } from "react-bootstrap";
 import Menu from "./common/Menu";
+//import main.scss for dev env and for building to main.css (webpack)
 import "../stylesheets/main.scss";
 
 // App component
