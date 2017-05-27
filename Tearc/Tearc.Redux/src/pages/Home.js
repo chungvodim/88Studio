@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ProgressBar } from "react-bootstrap";
 import Galleries from "../components/galerry/Galleries";
+import Index from "../components/galerry/Index";
 import UserList from "../components/user/UserList";
 
 // Home page component
@@ -22,7 +23,7 @@ export class Home extends React.Component {
     }
     return (
       <div className="page-home">
-        <Galleries/>
+        <Index/>
       </div>
     );
   }
