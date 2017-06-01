@@ -120,7 +120,7 @@ export default class Index extends React.Component {
     // no loading sign if its all loaded
     if (this.state.photos){
       return(
-        <div className="App">
+        <div>
           {this.renderGallery()}
           <Lightbox
             images={this.state.photos}

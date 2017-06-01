@@ -7,15 +7,13 @@ export default class App extends React.Component {
     // render
     render() {
         const {children} = this.props;
-
+        const divStyle = {
+            margin: '0 15px',
+        };
         return (
             <div className="App">
-                {/*<div>*/}
-                {/*<Menu/>*/}
-                {/*</div>*/}
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
+                <div>
+                    <Menu/>
                 </div>
                 <div className="App-intro">
                     {children}
