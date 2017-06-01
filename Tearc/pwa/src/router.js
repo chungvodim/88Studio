@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route, IndexRoute } from "react-router";
 import { history } from "./store.js";
-import App from "./components/App";
+import App from "./App";
 import Home from "./pages/Home";
 import Users from "./pages/Users";
 import UserEdit from "./pages/UserEdit";

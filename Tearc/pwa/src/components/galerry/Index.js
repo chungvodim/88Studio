@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import Measure from 'react-measure';
 import Lightbox from 'react-images';
+import './Index.css';
 
 export default class Index extends React.Component {
   constructor(){
@@ -71,7 +72,7 @@ export default class Index extends React.Component {
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(status, err.toString());
-      }.bind(this)
+      }
     });
   }
   openLightbox(index, event){

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router";
 import { Button, Glyphicon } from "react-bootstrap";
 
@@ -11,7 +12,7 @@ export default class GalleryListElement extends React.Component {
     return (
       <tr>
         <td>{gallery.title}</td>
-        <td><img src={gallery.url}/></td>
+        <td><img alt="Tearc-88Studio" src={gallery.url}/></td>
         <td>
           <Link to={'gallery-edit/' + gallery.id}>
             <Button bsSize="xsmall">

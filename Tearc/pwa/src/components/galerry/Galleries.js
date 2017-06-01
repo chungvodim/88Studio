@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
-import { Table, Pagination } from "react-bootstrap";
-import GalleryListElement from "./GalleryListElement";
-import GalleryDeletePrompt from "./GalleryDeletePrompt";
 import ImageGallery from 'react-image-gallery';
-const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
+// import { push } from "react-router-redux";
+// import { Table, Pagination } from "react-bootstrap";
+// import GalleryListElement from "./GalleryListElement";
+// import GalleryDeletePrompt from "./GalleryDeletePrompt";
+// const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
 
 // Gallery list component
 export class Galleries extends React.Component {
