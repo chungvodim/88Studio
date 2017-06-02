@@ -9,7 +9,20 @@ import './Index.css';
 export default class Index extends React.Component {
   constructor(){
     super();
-    this.state = {photos:null, pageNum:1, totalPages:1, loadedAll: false, currentImage:0};
+    this.state = {
+        photos:null,
+        pageNum:1,
+        totalPages:1,
+        loadedAll: false,
+        currentImage:0,
+        // api_key: '372ef3a005d9b9df062b8240c326254d',
+        api_key: '365ce81d595a424bce294c9fefbf06d8',
+        // user_id: '57933175@N08',
+        user_id: '150079880@N02',
+        // photoset_id: '72157680705961676',
+        photoset_id: '72157681555017303',
+        per_page: '21',
+    };
     this.handleScroll = this.handleScroll.bind(this);
     this.loadMorePhotos = this.loadMorePhotos.bind(this);
     this.closeLightbox = this.closeLightbox.bind(this);
@@ -37,7 +50,12 @@ export default class Index extends React.Component {
       return;
     }
     $.ajax({
-      url: 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=372ef3a005d9b9df062b8240c326254d&photoset_id=72157680705961676&user_id=57933175@N08&format=json&per_page=21&page='+this.state.pageNum+'&extras=url_m,url_c,url_l,url_h,url_o',
+      url: 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key='+this.state.api_key+
+      '&photoset_id='+this.state.photoset_id+
+      '&user_id='+this.state.user_id+
+      '&format=json&per_page='+this.state.per_page+
+      '&page='+this.state.pageNum+
+      '&extras=url_m,url_c,url_l,url_h,url_o',
       dataType: 'jsonp',
       jsonpCallback: 'jsonFlickrApi',
       cache: false,

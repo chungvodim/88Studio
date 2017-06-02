@@ -20,7 +20,7 @@ export class Users extends React.Component {
       );
     }
     return (
-      <div className="page-home">
+      <div className="page-users">
         <UserList/>
       </div>
     );
