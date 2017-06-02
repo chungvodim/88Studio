@@ -2,7 +2,7 @@ import React from "react";
 import Particles from "react-particles-js";
 import Menu from "./components/common/Menu";
 import "./App.css";
-import logo from './logo.svg';
+import logo from './logo.jpg';
 
 export default class App extends React.Component {
     // render

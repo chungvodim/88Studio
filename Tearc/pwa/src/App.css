@@ -44,3 +44,17 @@
 .particles-header{
     position: fixed;
 }
+
+.page-contact-address{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+    border-radius: 2px;
+    font-family: Roboto,Arial;
+    font-size: 12px;
+    color: #5B5B5B;
+}
