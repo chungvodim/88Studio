@@ -16,16 +16,12 @@ export default class Index extends React.Component {
             loadedAll: false,
             currentImage:0,
             url: 'https://api.flickr.com/services/rest/',
-            get_photos_medthod: 'flickr.photosets.getPhotos',
-            get_list_medthod: 'flickr.photosets.getList',
-            get_popular_medthod: 'flickr.photos.getPopular',
-            // api_key: '372ef3a005d9b9df062b8240c326254d',
+            get_photos_method: 'flickr.photosets.getPhotos',
+            get_list_method: 'flickr.photosets.getList',
+            get_popular_method: 'flickr.photos.getPopular',
             api_key: '3bceb192ae7e6efee09f0b097b0ba3bc',
-            // user_id: '57933175@N08',
-            // user_id: '150079880@N02',
             user_id: '123607232@N08',
-            // photoset_id: '72157680705961676',
-            photoset_id: '72157682581021770',
+            photoset_id: '',
             per_page: '12',
             photoSet_IDs: [],
         };
@@ -38,11 +34,9 @@ export default class Index extends React.Component {
         this.getList = this.getList.bind(this);
     }
     componentWillMount() {
-        // this.getList();
-
     }
     componentDidMount() {
-        this.loadMorePhotos();
+        this.getList();
         this.loadMorePhotos = _.debounce(this.loadMorePhotos, 200);
         window.addEventListener('scroll', this.handleScroll);
     }
@@ -51,6 +45,33 @@ export default class Index extends React.Component {
         if ((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)) {
             this.loadMorePhotos();
         }
+    }
+    getList(){
+        $.ajax({
+            url: this.state.url+ '?' +
+            'method='+this.state.get_list_method +
+            '&api_key='+this.state.api_key +
+            '&user_id='+this.state.user_id +
+            '&nojsoncallback=1'+
+            '&format=json',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                let photoset_IDs = [];
+                data.photosets.photoset.forEach(function(obj,i,array){
+                    photoset_IDs.push(obj.id);
+                })
+                this.setState({
+                    photoSet_IDs: photoset_IDs,
+                    photoset_id: photoset_IDs[0]
+                });
+                console.log(this.state.photoSet_IDs);
+                this.loadMorePhotos();
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(status, err.toString());
+            }
+        });
     }
     loadMorePhotos(e){
         if (e){
@@ -62,18 +83,20 @@ export default class Index extends React.Component {
         }
         $.ajax({
             url: this.state.url +'?'+
-            'method='+this.state.get_photos_medthod+
+            'method='+this.state.get_photos_method+
             '&api_key='+this.state.api_key+
             '&photoset_id='+this.state.photoset_id+
             '&user_id='+this.state.user_id+
-            '&format=json&per_page='+this.state.per_page+
+            '&format=json'+
+            '&per_page='+this.state.per_page+
             '&page='+this.state.pageNum+
+            '&nojsoncallback=1'+
             '&extras=url_m,url_c,url_l,url_h,url_o',
-            dataType: 'jsonp',
-            jsonpCallback: 'jsonFlickrApi',
+            dataType: 'json',
             cache: false,
             success: function(data) {
                 let photos = [];
+                console.log(data);
                 data.photoset.photo.forEach(function(obj,i,array){
                     let aspectRatio = parseFloat(obj.width_o / obj.height_o);
                     photos.push({
@@ -129,32 +152,7 @@ export default class Index extends React.Component {
             currentImage: this.state.currentImage + 1,
         });
     }
-    getList(){
-        $.ajax({
-            url: this.state.url+ '?' +
-            'method='+this.state.get_list_medthod +
-            '&api_key='+this.state.api_key +
-            '&user_id='+this.state.user_id +
-            '&format=json',
-            dataType: 'jsonp',
-            jsonpCallback: 'jsonFlickrApi',
-            cache: false,
-            success: function(data) {
-                let photoset_IDs = [];
-                data.photosets.photoset.forEach(function(obj,i,array){
-                    photoset_IDs.push(obj.id);
-                })
-                this.setState({
-                    photoSet_IDs: photoset_IDs,
-                    // photoset_id: photoset_IDs[0]
-                });
-                console.log(this.state.photoSet_IDs);
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(status, err.toString());
-            }
-        });
-    }
+
     renderGallery(){
         return(
             <Measure whitelist={['width']}>
