@@ -18,6 +18,7 @@ export default class Index extends React.Component {
             url: 'https://api.flickr.com/services/rest/',
             get_photos_medthod: 'flickr.photosets.getPhotos',
             get_list_medthod: 'flickr.photosets.getList',
+            get_popular_medthod: 'flickr.photos.getPopular',
             // api_key: '372ef3a005d9b9df062b8240c326254d',
             api_key: '3bceb192ae7e6efee09f0b097b0ba3bc',
             // user_id: '57933175@N08',
@@ -81,12 +82,12 @@ export default class Index extends React.Component {
                         height: parseInt(obj.height_o),
                         caption: obj.title,
                         alt: obj.title,
-                        srcset:[
-                            obj.url_m+' '+obj.width_m+'w',
-                            obj.url_c+' '+obj.width_c+'w',
-                            obj.url_l+' '+obj.width_l+'w',
-                            obj.url_h+' '+obj.width_h+'w'
-                        ],
+                        // srcset:[
+                        //     obj.url_m+' '+obj.width_m+'w',
+                        //     obj.url_c+' '+obj.width_c+'w',
+                        //     obj.url_l+' '+obj.width_l+'w',
+                        //     obj.url_h+' '+obj.width_h+'w'
+                        // ],
                         sizes:[
                             '(min-width: 480px) 50vw',
                             '(min-width: 1024px) 33.3vw',
