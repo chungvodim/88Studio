@@ -34,6 +34,7 @@ export default class Index extends React.Component {
         this.gotoNext = this.gotoNext.bind(this);
         this.gotoPrevious = this.gotoPrevious.bind(this);
         this.getList = this.getList.bind(this);
+        this.isSamePhotoSet = this.isSamePhotoSet.bind(this);
     }
     componentWillMount() {
     }
@@ -153,6 +154,7 @@ export default class Index extends React.Component {
     }
     openLightbox(index, event){
         event.preventDefault();
+        console.log("this.state.photos[index].photoset_id: "+ this.state.photos[index].photoset_id) ;
         this.setState({
             currentImage: index,
             lightboxIsOpen: true
@@ -165,14 +167,31 @@ export default class Index extends React.Component {
         });
     }
     gotoPrevious(){
+        let curImage = this.state.currentImage;
+        let prevImage = this.state.currentImage - 1;
+        if(!this.isSamePhotoSet(curImage, prevImage)){
+            return;
+        }
         this.setState({
             currentImage: this.state.currentImage - 1,
         });
     }
     gotoNext(){
+        let curImage = this.state.currentImage;
+        let nextImage = this.state.currentImage + 1;
+        if(!this.isSamePhotoSet(curImage, nextImage)){
+            return;
+        }
         this.setState({
             currentImage: this.state.currentImage + 1,
         });
+    }
+    isSamePhotoSet(index1, index2){
+        if(this.state.photos[index1].photoset_id != this.state.photos[index2].photoset_id){
+            return false;
+        }else{
+            return true
+        }
     }
 
     renderGallery(){
