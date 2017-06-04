@@ -24,6 +24,8 @@ export default class Index extends React.Component {
             photoset_id: '',
             per_page: '12',
             photoSet_IDs: [],
+            photoSetIndex: 0,
+            numberOfPhotoSet: 0,
         };
         this.handleScroll = this.handleScroll.bind(this);
         this.loadMorePhotos = this.loadMorePhotos.bind(this);
@@ -63,9 +65,11 @@ export default class Index extends React.Component {
                 })
                 this.setState({
                     photoSet_IDs: photoset_IDs,
-                    photoset_id: photoset_IDs[0]
+                    photoSetIndex: 0,
+                    numberOfPhotoSet: photoset_IDs.length,
+                    photoset_id: photoset_IDs[this.state.photoSetIndex]
                 });
-                console.log(this.state.photoSet_IDs);
+                // console.log(this.state.photoSet_IDs);
                 this.loadMorePhotos();
             }.bind(this),
             error: function(xhr, status, err) {
@@ -78,11 +82,19 @@ export default class Index extends React.Component {
             e.preventDefault();
         }
         if (this.state.pageNum > this.state.totalPages){
-            this.setState({loadedAll: true});
-            return;
+            if(this.state.photoSetIndex + 1 < this.state.numberOfPhotoSet){
+                this.setState({
+                    photoSetIndex: this.state.photoSetIndex + 1,
+                    photoset_id: this.state.photoSet_IDs[this.state.photoSetIndex + 1],
+                    pageNum: 1,
+                });
+            } else {
+                console.log('no more photos');
+                this.setState({loadedAll: true});
+                return;
+            }
         }
-        $.ajax({
-            url: this.state.url +'?'+
+        let url = this.state.url +'?'+
             'method='+this.state.get_photos_method+
             '&api_key='+this.state.api_key+
             '&photoset_id='+this.state.photoset_id+
@@ -91,38 +103,48 @@ export default class Index extends React.Component {
             '&per_page='+this.state.per_page+
             '&page='+this.state.pageNum+
             '&nojsoncallback=1'+
-            '&extras=url_m,url_c,url_l,url_h,url_o',
+            '&extras=url_m,url_c,url_l,url_h,url_o';
+        // console.log('url: ' + url);
+        let photoset_id = this.state.photoset_id;
+        $.ajax({
+            url: url,
             dataType: 'json',
             cache: false,
             success: function(data) {
                 let photos = [];
-                console.log(data);
-                data.photoset.photo.forEach(function(obj,i,array){
-                    let aspectRatio = parseFloat(obj.width_o / obj.height_o);
-                    photos.push({
-                        src: (aspectRatio >= 3) ? obj.url_c : obj.url_m,
-                        width: parseInt(obj.width_o),
-                        height: parseInt(obj.height_o),
-                        caption: obj.title,
-                        alt: obj.title,
-                        // srcset:[
-                        //     obj.url_m+' '+obj.width_m+'w',
-                        //     obj.url_c+' '+obj.width_c+'w',
-                        //     obj.url_l+' '+obj.width_l+'w',
-                        //     obj.url_h+' '+obj.width_h+'w'
-                        // ],
-                        sizes:[
-                            '(min-width: 480px) 50vw',
-                            '(min-width: 1024px) 33.3vw',
-                            '100vw'
-                        ]
+                // console.log(data);
+                if(data.stat === 'ok'){
+                    data.photoset.photo.forEach(function(obj,i,array){
+                        let aspectRatio = parseFloat(obj.width_o / obj.height_o);
+                        photos.push({
+                            src: (aspectRatio >= 3) ? obj.url_c : obj.url_m,
+                            width: parseInt(obj.width_o),
+                            height: parseInt(obj.height_o),
+                            caption: obj.title,
+                            alt: obj.title,
+                            srcset:[
+                                obj.url_m+' '+obj.width_m+'w',
+                                obj.url_c+' '+obj.width_c+'w',
+                                obj.url_l+' '+obj.width_l+'w',
+                                obj.url_h+' '+obj.width_h+'w'
+                            ],
+                            sizes:[
+                                '(min-width: 480px) 50vw',
+                                '(min-width: 1024px) 33.3vw',
+                                '100vw'
+                            ],
+                            photoset_id: photoset_id
+                        });
+                    })
+                    this.setState({
+                        photos: this.state.photos ? this.state.photos.concat(photos) : photos,
+                        pageNum: this.state.pageNum + 1,
+                        totalPages: data.photoset.pages
                     });
-                })
-                this.setState({
-                    photos: this.state.photos ? this.state.photos.concat(photos) : photos,
-                    pageNum: this.state.pageNum + 1,
-                    totalPages: data.photoset.pages
-                });
+                } else {
+                    console.log(data.message);
+                }
+
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(status, err.toString());
