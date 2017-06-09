@@ -84,6 +84,7 @@ export default class Index extends React.Component {
         }
         if (this.state.pageNum > this.state.totalPages){
             if(this.state.photoSetIndex + 1 < this.state.numberOfPhotoSet){
+                // go through next photo set
                 this.setState({
                     photoSetIndex: this.state.photoSetIndex + 1,
                     photoset_id: this.state.photoSet_IDs[this.state.photoSetIndex + 1],
