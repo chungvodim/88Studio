@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.WebAPI", "Tearc.WebAPI\Tearc.WebAPI.csproj", "{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Repository", "Tearc.Repository\Tearc.Repository.csproj", "{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Resource", "Tearc.Resource\Tearc.Resource.csproj", "{2D7CCB5E-1732-41AE-A86E-76ED6E025780}"
@@ -17,11 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Data", "Tearc.Data\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Web", "Tearc.Web\Tearc.Web.csproj", "{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.XTest", "Tearc.XTest\Tearc.XTest.csproj", "{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Test", "Tearc.Test\Tearc.Test.csproj", "{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.SPA", "Tearc.SPA\Tearc.SPA.csproj", "{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.ViewModels", "Tearc.ViewModels\Tearc.ViewModels.csproj", "{309B05C0-350C-49BA-8CD2-7C49971F80A9}"
 EndProject
@@ -35,27 +29,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{FB76D4DB-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{029D6E0B-DED6-43FB-917B-6C504034AB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Azure", "Tearc.Azure\Tearc.Azure.csproj", "{6E869033-7A19-4BF1-A7FC-217FB492AAE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Bot", "Tearc.Bot\Tearc.Bot.csproj", "{019C47BD-4CFA-4E12-AB51-32C929A5B7FC}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Tearc.Redux(1)", "Tearc.Redux\", "{991A5718-AE90-4016-914F-412303C5F0F2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bots", "Bots", "{C059F9B9-670B-487D-B0D0-CED4A6691C37}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "pwa", "pwa\", "{2DD51512-44CB-4DA9-BA31-08C525447867}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_43787"
-		Debug.AspNetCompiler.PhysicalPath = "Tearc.Redux\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_43787\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_39058"
+		Debug.AspNetCompiler.PhysicalPath = "pwa\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39058\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_43787"
-		Release.AspNetCompiler.PhysicalPath = "Tearc.Redux\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_43787\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_39058"
+		Release.AspNetCompiler.PhysicalPath = "pwa\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39058\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "43787"
-		SlnRelativePath = "Tearc.Redux\"
+		VWDPort = "39058"
 	EndProjectSection
 EndProject
 Global
@@ -64,10 +59,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,47 +83,36 @@ Global
 		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903}.Release|Any CPU.Build.0 = Release|Any CPU
 		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{309B05C0-350C-49BA-8CD2-7C49971F80A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E869033-7A19-4BF1-A7FC-217FB492AAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E869033-7A19-4BF1-A7FC-217FB492AAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E869033-7A19-4BF1-A7FC-217FB492AAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E869033-7A19-4BF1-A7FC-217FB492AAE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{991A5718-AE90-4016-914F-412303C5F0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{991A5718-AE90-4016-914F-412303C5F0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{991A5718-AE90-4016-914F-412303C5F0F2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{991A5718-AE90-4016-914F-412303C5F0F2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{019C47BD-4CFA-4E12-AB51-32C929A5B7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019C47BD-4CFA-4E12-AB51-32C929A5B7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019C47BD-4CFA-4E12-AB51-32C929A5B7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019C47BD-4CFA-4E12-AB51-32C929A5B7FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD51512-44CB-4DA9-BA31-08C525447867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD51512-44CB-4DA9-BA31-08C525447867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD51512-44CB-4DA9-BA31-08C525447867}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD51512-44CB-4DA9-BA31-08C525447867}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9D6E6D6D-F473-4FEE-9E13-E24DF8FC1D22} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
 		{08E2D750-2A44-43D2-9D0D-DDEE64B28DB4} = {FB76D4DB-C285-45B6-BAE3-62A7DF66B695}
 		{2D7CCB5E-1732-41AE-A86E-76ED6E025780} = {FB76D4DB-C285-45B6-BAE3-62A7DF66B695}
 		{A795B22E-B60B-4AF3-8FF8-8D73229DF4C2} = {029D6E0B-DED6-43FB-917B-6C504034AB96}
 		{F6DE74B4-7219-498E-9A77-2972563A5C63} = {F005E091-6CC1-46F6-AFFF-C637DB031B41}
 		{F39ED974-2ABC-49C8-93DE-C54A26D08135} = {FB76D4DB-C285-45B6-BAE3-62A7DF66B695}
 		{6AD00D7A-5DF6-47E8-8B4A-752A9937C1E8} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
-		{2B81BA90-28D4-44F9-A2E6-8E6BFDB99860} = {BE3FBEDB-36F1-4577-9653-D3A2475F6B73}
 		{1A60A594-8BA1-4F93-99B0-5AC2699BFBD3} = {BE3FBEDB-36F1-4577-9653-D3A2475F6B73}
-		{57B8E30C-23A8-4D44-A9E3-7FF8FCCEB903} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
 		{309B05C0-350C-49BA-8CD2-7C49971F80A9} = {029D6E0B-DED6-43FB-917B-6C504034AB96}
-		{6E869033-7A19-4BF1-A7FC-217FB492AAE5} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
-		{991A5718-AE90-4016-914F-412303C5F0F2} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
+		{019C47BD-4CFA-4E12-AB51-32C929A5B7FC} = {029D6E0B-DED6-43FB-917B-6C504034AB96}
+		{2DD51512-44CB-4DA9-BA31-08C525447867} = {F8FB77BD-6C76-4CFE-BEA4-6D21BDEBDF9E}
 	EndGlobalSection
 EndGlobal

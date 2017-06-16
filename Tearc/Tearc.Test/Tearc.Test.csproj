@@ -20,7 +20,6 @@
     <ProjectReference Include="..\Tearc.Repository\Tearc.Repository.csproj" />
     <ProjectReference Include="..\Tearc.Resource\Tearc.Resource.csproj" />
     <ProjectReference Include="..\Tearc.Service\Tearc.Service.csproj" />
-    <ProjectReference Include="..\Tearc.WebAPI\Tearc.WebAPI.csproj" />
     <ProjectReference Include="..\Tearc.Web\Tearc.Web.csproj" />
   </ItemGroup>
 
