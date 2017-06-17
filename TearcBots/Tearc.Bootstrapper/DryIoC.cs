@@ -17,8 +17,9 @@ namespace Tearc.Bootstrapper
             // Service that used Sql and MongoDb should be separated to avoid confusion
 
             // Sql EF services
-            container.Register<ApplicationDbContext>(Reuse.Singleton);
-            container.Register(typeof(IRepository<>), typeof(Repository<>), Reuse.Transient);
+            container.Register<ApplicationDbContext>(Reuse.ScopedOrSingleton);
+            container.Register(typeof(IRepository<>), typeof(EntityFrameWorkRepository<>), Reuse.InCurrentScope);
+            container.Register<MongoRepository>(Reuse.InCurrentScope);
         }
     }
 }

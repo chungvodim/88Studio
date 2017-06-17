@@ -7,13 +7,13 @@ using System.Data.Entity;
 
 namespace Tearc.Repository
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity
+    public class EntityFrameWorkRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext context;
         private DbSet<T> entities;
         string errorMessage = string.Empty;
 
-        public Repository(ApplicationDbContext context)
+        public EntityFrameWorkRepository(ApplicationDbContext context)
         {
             this.context = context;
             entities = context.Set<T>();

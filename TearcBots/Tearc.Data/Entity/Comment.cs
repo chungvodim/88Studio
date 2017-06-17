@@ -10,6 +10,6 @@ namespace Tearc.Data.Entity
     {
         public Int64 AdvertID { get; set; }
         public string Content { get; set; } = "Unknown Title";
-        public Author Author { get; set; } = new Author();
+        public virtual Author Author { get; set; } = new Author();
     }
 }
