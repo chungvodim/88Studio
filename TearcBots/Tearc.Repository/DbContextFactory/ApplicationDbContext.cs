@@ -11,7 +11,7 @@ namespace Tearc.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("name=Tearc")
+        public ApplicationDbContext() : base("name=TearcDB")
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

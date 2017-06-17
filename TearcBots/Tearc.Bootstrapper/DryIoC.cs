@@ -1,4 +1,5 @@
 ﻿using DryIoc;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,11 @@ namespace Tearc.Bootstrapper
 
             // Sql EF services
             container.Register<ApplicationDbContext>(Reuse.ScopedOrSingleton);
-            container.Register<IRepository, EntityFrameWorkRepository>(Reuse.Transient);
+            container.Register<IEntityFrameWorkRepository, EntityFrameWorkRepository>(Reuse.Transient);
+
+            // Mongo service
             container.Register<IMongoRepository, MongoRepository>(Reuse.Transient);
+            container.RegisterDelegate<IMongoDatabase>(x => MongoDatabaseFactory.Create(), Reuse.ScopedOrSingleton);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 namespace Tearc.Data.Entity
 {
     //[Table("Adverts")]
-    public class Advert : BaseEntity
+    public class Advert : MongoEntity
     {
         public string ExternalID { get; set; } = Guid.NewGuid().ToString();
         public virtual Source Source { get; set; } = new Source();

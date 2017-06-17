@@ -6,7 +6,7 @@ using System.Text;
 namespace Tearc.Data.Entity
 {
     //[Table("ProductTypes")]
-    public class ProductType : BaseEntity
+    public class ProductType : MongoEntity
     {
         public string Name { get; set; } = "Unknown Product Type";
     }

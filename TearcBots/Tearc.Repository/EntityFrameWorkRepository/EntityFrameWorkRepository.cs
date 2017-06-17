@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Tearc.Repository
 {
-    public class EntityFrameWorkRepository : IRepository
+    public class EntityFrameWorkRepository : IEntityFrameWorkRepository
     {
         protected ApplicationDbContext _dbContext;
 

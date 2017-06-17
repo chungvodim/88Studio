@@ -11,8 +11,9 @@ namespace Tearc.CrawlingBot
 {
     class Program
     {
-        static IRepository advertRepo;
+        static IRepository repository;
         static ILog logger = LogManager.GetLogger(typeof(Program));
+        const Int64 NEWEST_ID = 6208973;
 
         static void Main(string[] args)
         {
@@ -25,7 +26,7 @@ namespace Tearc.CrawlingBot
                 //var container = new Container();
                 Bootstrapper.DryIoC.Configure(container);
 
-                advertRepo = container.Resolve<IRepository>();
+                repository = container.Resolve<IMongoRepository>();
 
                 Uri uriToCrawl = GetSiteToCrawl(args);
 
@@ -208,9 +209,9 @@ namespace Tearc.CrawlingBot
                             }
                         }
                         PrintAttentionText(string.Format("advert Link: {0}", advertLink.InnerHtml));
-                        advertRepo.Create<Advert>(new Advert()
+                        repository.Create<Advert>(new Advert()
                         {
-                            Title = advertLink.InnerHtml
+                            Title = advertLink.InnerHtml,
                         });
 
                     }

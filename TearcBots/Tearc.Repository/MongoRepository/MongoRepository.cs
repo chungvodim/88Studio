@@ -345,16 +345,4 @@ namespace Tearc.Repository
             return collectionname;
         }
     }
-
-    public class MongoDatabaseFactory
-    {
-        public static IMongoDatabase Create(string connectionName = "Tearc")
-        {
-            var url = new MongoUrl(ConfigurationManager.ConnectionStrings[connectionName].ConnectionString);
-            var client = new MongoClient(url);
-            var db = client.GetDatabase(url.DatabaseName);
-
-            return db;
-        }
-    }
 }

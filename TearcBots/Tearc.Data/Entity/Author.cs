@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Tearc.Data.Entity
 {
     //[Table("Authors")]
-    public class Author : BaseEntity
+    public class Author : MongoEntity
     {
         public string UserName { get; set; } = "chungvodim";
         public string Name { get; set; } = "chungvodim";

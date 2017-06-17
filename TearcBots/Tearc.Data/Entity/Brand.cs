@@ -6,7 +6,7 @@ using System.Text;
 namespace Tearc.Data.Entity
 {
     //[Table("Brands")]
-    public class Brand : BaseEntity
+    public class Brand : MongoEntity
     {
         public string Name { get; set; } = "Unknow Brand";
     }

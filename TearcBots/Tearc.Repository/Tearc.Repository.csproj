@@ -174,12 +174,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="IMongoRepository.cs" />
+    <Compile Include="DbContextFactory\ApplicationDbContext.cs" />
+    <Compile Include="EntityFrameWorkRepository\IEntityFrameWorkRepository.cs" />
+    <Compile Include="MongoRepository\IMongoRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="MongoRepository.cs" />
+    <Compile Include="DbContextFactory\MongoDatabaseFactory.cs" />
+    <Compile Include="MongoRepository\MongoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EntityFrameWorkRepository.cs" />
+    <Compile Include="EntityFrameWorkRepository\EntityFrameWorkRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
