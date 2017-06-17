@@ -18,8 +18,8 @@ namespace Tearc.Bootstrapper
 
             // Sql EF services
             container.Register<ApplicationDbContext>(Reuse.ScopedOrSingleton);
-            container.Register(typeof(IRepository<>), typeof(EntityFrameWorkRepository<>), Reuse.InCurrentScope);
-            container.Register<MongoRepository>(Reuse.InCurrentScope);
+            container.Register<IRepository, EntityFrameWorkRepository>(Reuse.Transient);
+            container.Register<IMongoRepository, MongoRepository>(Reuse.Transient);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Tearc.CrawlingBot
 {
     class Program
     {
-        static IRepository<Advert> advertRepo;
+        static IRepository advertRepo;
         static ILog logger = LogManager.GetLogger(typeof(Program));
 
         static void Main(string[] args)
@@ -21,10 +21,11 @@ namespace Tearc.CrawlingBot
                 log4net.Config.XmlConfigurator.Configure();
                 PrintDisclaimer();
 
-                var container = new Container();
+                var container = new Container(Rules.Default.WithTrackingDisposableTransients());
+                //var container = new Container();
                 Bootstrapper.DryIoC.Configure(container);
 
-                advertRepo = container.Resolve<IRepository<Advert>>();
+                advertRepo = container.Resolve<IRepository>();
 
                 Uri uriToCrawl = GetSiteToCrawl(args);
 
@@ -207,7 +208,7 @@ namespace Tearc.CrawlingBot
                             }
                         }
                         PrintAttentionText(string.Format("advert Link: {0}", advertLink.InnerHtml));
-                        advertRepo.Insert(new Advert()
+                        advertRepo.Create<Advert>(new Advert()
                         {
                             Title = advertLink.InnerHtml
                         });

@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Tearc.Repository
 {
-    public class MongoRepository
+    public class MongoRepository : IMongoRepository
     {
         protected IMongoDatabase _dbContext;
 
@@ -74,7 +74,7 @@ namespace Tearc.Repository
 
         #endregion MongoSpecific
 
-        public virtual IQueryable<TEntity> All<TEntity>()
+        public virtual IQueryable<TEntity> GetAll<TEntity>()
             where TEntity : class
         {
             return Collection<TEntity>().AsQueryable();
