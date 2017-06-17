@@ -13,7 +13,7 @@ namespace Tearc.CrawlingBot
     {
         static IRepository repository;
         static ILog logger = LogManager.GetLogger(typeof(Program));
-        const Int64 NEWEST_ID = 6208973;
+        const int NEWEST_ID = 1000;//6208973
 
         static void Main(string[] args)
         {
@@ -25,17 +25,14 @@ namespace Tearc.CrawlingBot
                 var container = new Container(Rules.Default.WithTrackingDisposableTransients());
                 //var container = new Container();
                 Bootstrapper.DryIoC.Configure(container);
-
                 repository = container.Resolve<IMongoRepository>();
-
-                Uri uriToCrawl = GetSiteToCrawl(args);
 
                 IWebCrawler crawler;
 
                 //Uncomment only one of the following to see that instance in action
-                crawler = GetDefaultWebCrawler();
+                //crawler = GetDefaultWebCrawler();
                 //crawler = GetManuallyConfiguredWebCrawler();
-                //crawler = GetCustomBehaviorUsingLambdaWebCrawler();
+                crawler = GetCustomBehaviorUsingLambdaWebCrawler();
 
                 //Subscribe to any of these asynchronous events, there are also sychronous versions of each.
                 //This is where you process data about specific events of the crawl
@@ -44,8 +41,11 @@ namespace Tearc.CrawlingBot
                 crawler.PageCrawlDisallowedAsync += crawler_PageCrawlDisallowed;
                 crawler.PageLinksCrawlDisallowedAsync += crawler_PageLinksCrawlDisallowed;
 
+
+
                 //Start the crawl
                 //This is a synchronous call
+                Uri uriToCrawl = GetSiteToCrawl(args);
                 CrawlResult result = crawler.Crawl(uriToCrawl);
 
                 //Now go view the log.txt file that is in the same directory as this executable. It has
@@ -100,8 +100,8 @@ namespace Tearc.CrawlingBot
             //NOTE: This is lambda is run after the regular ICrawlDecsionMaker.ShouldCrawlPage method is run.
             crawler.ShouldCrawlPage((pageToCrawl, crawlContext) =>
             {
-                if (pageToCrawl.Uri.AbsoluteUri.Contains("ghost"))
-                    return new CrawlDecision { Allow = false, Reason = "Scared of ghosts" };
+                //if (!pageToCrawl.Uri.AbsoluteUri.Contains("showthread.php?t="))
+                //    return new CrawlDecision { Allow = false };
 
                 return new CrawlDecision { Allow = true };
             });
@@ -114,6 +114,9 @@ namespace Tearc.CrawlingBot
                 if (crawlContext.CrawledCount >= 5)
                     return new CrawlDecision { Allow = false, Reason = "We already downloaded the raw page content for 5 pages" };
 
+                //if (crawledPage.Uri.AbsoluteUri.Contains("showthread.php?t="))
+                //    return new CrawlDecision { Allow = true };
+
                 return new CrawlDecision { Allow = true };
             });
 
@@ -123,6 +126,9 @@ namespace Tearc.CrawlingBot
             {
                 if (!crawledPage.IsInternal)
                     return new CrawlDecision { Allow = false, Reason = "We dont crawl links of external pages" };
+
+                //if (crawledPage.Uri.AbsoluteUri.Contains("showthread.php?t="))
+                //    return new CrawlDecision { Allow = true };
 
                 return new CrawlDecision { Allow = true };
             });
@@ -135,7 +141,7 @@ namespace Tearc.CrawlingBot
             string userInput = "";
             if (args.Length < 1)
             {
-                System.Console.WriteLine("Please enter ABSOLUTE url to crawl:");
+                //System.Console.WriteLine("Please enter ABSOLUTE url to crawl:");
                 userInput = "https://vozforums.com/forumdisplay.php?f=68";
                 //userInput = System.Console.ReadLine();
             }
@@ -170,6 +176,33 @@ namespace Tearc.CrawlingBot
         }
 
         static void crawler_ProcessPageCrawlCompleted(object sender, PageCrawlCompletedArgs e)
+        {
+            CrawledPage crawledPage = e.CrawledPage;
+
+            if (crawledPage.WebException != null || crawledPage.HttpWebResponse.StatusCode != HttpStatusCode.OK)
+                Console.WriteLine("Crawl of page failed {0}", crawledPage.Uri.AbsoluteUri);
+            else
+                Console.WriteLine("Crawl of page succeeded {0}", crawledPage.Uri.AbsoluteUri);
+
+            if (string.IsNullOrEmpty(crawledPage.Content.Text))
+                Console.WriteLine("Page had no content {0}", crawledPage.Uri.AbsoluteUri);
+
+            var htmlAgilityPackDocument = crawledPage.HtmlDocument; //Html Agility Pack parser
+            var angleSharpHtmlDocument = crawledPage.AngleSharpHtmlDocument; //AngleSharp parser
+
+            var titleNode = htmlAgilityPackDocument.DocumentNode.SelectSingleNode("/html/body/else/div[2]/div/div/table[1]/tbody/tr/td[1]/table/tbody/tr[2]/td/strong");
+            var title = titleNode != null ? titleNode.InnerText : "Unknown Title";
+            var URL = crawledPage.Uri.AbsoluteUri;
+
+            repository.Create<Advert>(new Advert()
+            {
+                Title = title,
+                URL = URL,
+                Content = "TBD"
+            });
+        }
+
+        static void crawler_ProcessPageCrawlCompleted2(object sender, PageCrawlCompletedArgs e)
         {
             CrawledPage crawledPage = e.CrawledPage;
 
