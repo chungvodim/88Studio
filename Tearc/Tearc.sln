@@ -27,8 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{FB76D4DB-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{029D6E0B-DED6-43FB-917B-6C504034AB96}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bots", "Bots", "{C059F9B9-670B-487D-B0D0-CED4A6691C37}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "pwa", "pwa\", "{2DD51512-44CB-4DA9-BA31-08C525447867}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
