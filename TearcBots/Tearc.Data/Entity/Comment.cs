@@ -9,7 +9,7 @@ namespace Tearc.Data.Entity
     public class Comment : BaseEntity
     {
         public Int64 AdvertID { get; set; }
-        public string Content { get; set; }
-        public string Author { get; set; }
+        public string Content { get; set; } = "Unknown Title";
+        public Author Author { get; set; } = new Author();
     }
 }

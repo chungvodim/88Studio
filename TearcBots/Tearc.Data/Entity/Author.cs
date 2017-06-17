@@ -6,11 +6,11 @@ namespace Tearc.Data.Entity
     //[Table("Authors")]
     public class Author : BaseEntity
     {
-        public string UserName { get; set; }
-        public string Name { get; set; }
-        public DateTime? DOB { get; set; }
-        public DateTime? JoinDate { get; set; }
-        public Source Source { get; set; }
-        public int Rating { get; set; }
+        public string UserName { get; set; } = "chungvodim";
+        public string Name { get; set; } = "chungvodim";
+        public DateTime? DOB { get; set; } = DateTime.UtcNow;
+        public DateTime? JoinDate { get; set; } = DateTime.UtcNow;
+        public Source Source { get; set; } = new Source();
+        public int Rating { get; set; } = 5;
     }
 }

@@ -12,8 +12,8 @@ namespace Tearc.Data
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 Id { get; set; }
-        public DateTime AddedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public string IPAddress { get; set; }
+        public DateTime AddedDate { get; set; } = DateTime.UtcNow;
+        public DateTime ModifiedDate { get; set; } = DateTime.UtcNow;
+        public string IPAddress { get; set; } = "0.0.0.0";
     }
 }

@@ -6,8 +6,8 @@ using System.Text;
 namespace Tearc.Data.Entity
 {
     //[Table("Brands")]
-    public class Brand
+    public class Brand : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "Unknow Brand";
     }
 }

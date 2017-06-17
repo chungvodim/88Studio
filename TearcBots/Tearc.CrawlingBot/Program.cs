@@ -1,6 +1,7 @@
 ﻿using Abot.Crawler;
 using Abot.Poco;
 using DryIoc;
+using log4net;
 using System;
 using System.Net;
 using Tearc.Data.Entity;
@@ -10,41 +11,51 @@ namespace Tearc.CrawlingBot
 {
     class Program
     {
+        static IRepository<Advert> advertRepo;
+        static ILog logger = LogManager.GetLogger(typeof(Program));
+
         static void Main(string[] args)
         {
-            log4net.Config.XmlConfigurator.Configure();
-            PrintDisclaimer();
+            try
+            {
+                log4net.Config.XmlConfigurator.Configure();
+                PrintDisclaimer();
 
-            var container = new Container();
-            Bootstrapper.DryIoC.Configure(container);
+                var container = new Container();
+                Bootstrapper.DryIoC.Configure(container);
 
-            var myService = container.Resolve(typeof(IRepository<Advert>));
+                advertRepo = container.Resolve<IRepository<Advert>>();
 
-            Uri uriToCrawl = GetSiteToCrawl(args);
+                Uri uriToCrawl = GetSiteToCrawl(args);
 
-            IWebCrawler crawler;
+                IWebCrawler crawler;
 
-            //Uncomment only one of the following to see that instance in action
-            crawler = GetDefaultWebCrawler();
-            //crawler = GetManuallyConfiguredWebCrawler();
-            //crawler = GetCustomBehaviorUsingLambdaWebCrawler();
+                //Uncomment only one of the following to see that instance in action
+                crawler = GetDefaultWebCrawler();
+                //crawler = GetManuallyConfiguredWebCrawler();
+                //crawler = GetCustomBehaviorUsingLambdaWebCrawler();
 
-            //Subscribe to any of these asynchronous events, there are also sychronous versions of each.
-            //This is where you process data about specific events of the crawl
-            crawler.PageCrawlStartingAsync += crawler_ProcessPageCrawlStarting;
-            crawler.PageCrawlCompletedAsync += crawler_ProcessPageCrawlCompleted;
-            crawler.PageCrawlDisallowedAsync += crawler_PageCrawlDisallowed;
-            crawler.PageLinksCrawlDisallowedAsync += crawler_PageLinksCrawlDisallowed;
+                //Subscribe to any of these asynchronous events, there are also sychronous versions of each.
+                //This is where you process data about specific events of the crawl
+                crawler.PageCrawlStartingAsync += crawler_ProcessPageCrawlStarting;
+                crawler.PageCrawlCompletedAsync += crawler_ProcessPageCrawlCompleted;
+                crawler.PageCrawlDisallowedAsync += crawler_PageCrawlDisallowed;
+                crawler.PageLinksCrawlDisallowedAsync += crawler_PageLinksCrawlDisallowed;
 
-            //Start the crawl
-            //This is a synchronous call
-            CrawlResult result = crawler.Crawl(uriToCrawl);
+                //Start the crawl
+                //This is a synchronous call
+                CrawlResult result = crawler.Crawl(uriToCrawl);
 
-            //Now go view the log.txt file that is in the same directory as this executable. It has
-            //all the statements that you were trying to read in the console window :).
-            //Not enough data being logged? Change the app.config file's log4net log level from "INFO" TO "DEBUG"
+                //Now go view the log.txt file that is in the same directory as this executable. It has
+                //all the statements that you were trying to read in the console window :).
+                //Not enough data being logged? Change the app.config file's log4net log level from "INFO" TO "DEBUG"
 
-            PrintDisclaimer();
+                PrintDisclaimer();
+            }
+            catch (Exception ex)
+            {
+                PrintAttentionText(ex.ToString());
+            }
         }
 
         private static IWebCrawler GetDefaultWebCrawler()
@@ -177,23 +188,35 @@ namespace Tearc.CrawlingBot
                 PrintAttentionText(string.Format("number of adverts: {0}", adverts.Count));
                 foreach (var advert in adverts)
                 {
-                    var fields = advert.SelectNodes("./td");
-                    if (fields == null) continue;
-                    var mainField = fields[2];
-                    var subfileds = mainField.SelectNodes("./div");
-                    if (subfileds == null) continue;
-                    var links = subfileds[0].SelectNodes("./a");
-                    if (links == null) continue;
-                    var advertLink = links[0];
-                    if (!advertLink.GetAttributeValue("id", "").Contains("thread_title"))
+                    try
                     {
-                        advertLink = links[1];
+                        var fields = advert.SelectNodes("./td");
+                        if (fields == null) continue;
+                        var mainField = fields[2];
+                        var subfileds = mainField.SelectNodes("./div");
+                        if (subfileds == null) continue;
+                        var links = subfileds[0].SelectNodes("./a");
+                        if (links == null) continue;
+                        var advertLink = links[0];
                         if (!advertLink.GetAttributeValue("id", "").Contains("thread_title"))
                         {
-                            advertLink = links[2];
+                            advertLink = links[1];
+                            if (!advertLink.GetAttributeValue("id", "").Contains("thread_title"))
+                            {
+                                advertLink = links[2];
+                            }
                         }
+                        PrintAttentionText(string.Format("advert Link: {0}", advertLink.InnerHtml));
+                        advertRepo.Insert(new Advert()
+                        {
+                            Title = advertLink.InnerHtml
+                        });
+
                     }
-                    PrintAttentionText(string.Format("advert Link: {0}", advertLink.InnerHtml));
+                    catch (Exception ex)
+                    {
+                        PrintAttentionText(ex.ToString());
+                    }
                 }
             }
         }
