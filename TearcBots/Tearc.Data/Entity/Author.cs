@@ -10,7 +10,7 @@ namespace Tearc.Data.Entity
         public string Name { get; set; } = "chungvodim";
         public DateTime? DOB { get; set; } = DateTime.UtcNow;
         public DateTime? JoinDate { get; set; } = DateTime.UtcNow;
-        public virtual Source Source { get; set; } = new Source();
+        public string Source { get; set; } = "https://vozforums.com";
         public int Rating { get; set; } = 5;
     }
 }

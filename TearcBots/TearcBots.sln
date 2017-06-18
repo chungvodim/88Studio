@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapper", "Bootstrappe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.Bootstrapper", "Tearc.Bootstrapper\Tearc.Bootstrapper.csproj", "{AE6D4ABD-B720-4760-8966-6BA53A1F710C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tearc.ScrapingBot", "Tearc.ScrapingBot\Tearc.ScrapingBot.csproj", "{DBBE68C5-3D58-42DF-A1DD-98EC9F4CC49A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AE6D4ABD-B720-4760-8966-6BA53A1F710C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE6D4ABD-B720-4760-8966-6BA53A1F710C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE6D4ABD-B720-4760-8966-6BA53A1F710C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBE68C5-3D58-42DF-A1DD-98EC9F4CC49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBE68C5-3D58-42DF-A1DD-98EC9F4CC49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBE68C5-3D58-42DF-A1DD-98EC9F4CC49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBE68C5-3D58-42DF-A1DD-98EC9F4CC49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

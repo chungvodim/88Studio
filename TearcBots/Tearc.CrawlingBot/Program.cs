@@ -13,7 +13,7 @@ namespace Tearc.CrawlingBot
     {
         static IRepository repository;
         static ILog logger = LogManager.GetLogger(typeof(Program));
-        const int NEWEST_ID = 1000;//6208973
+        const int NEWEST_ID = 1000;//6209153
 
         static void Main(string[] args)
         {
@@ -189,6 +189,11 @@ namespace Tearc.CrawlingBot
 
             var htmlAgilityPackDocument = crawledPage.HtmlDocument; //Html Agility Pack parser
             var angleSharpHtmlDocument = crawledPage.AngleSharpHtmlDocument; //AngleSharp parser
+
+            if(!htmlAgilityPackDocument.DocumentNode.InnerHtml.Contains("Máy tính để bàn"))
+            {
+                return;
+            }
 
             var titleNode = htmlAgilityPackDocument.DocumentNode.SelectSingleNode("/html/body/else/div[2]/div/div/table[1]/tbody/tr/td[1]/table/tbody/tr[2]/td/strong");
             var title = titleNode != null ? titleNode.InnerText : "Unknown Title";
