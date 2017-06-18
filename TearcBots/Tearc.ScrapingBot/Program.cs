@@ -29,49 +29,8 @@ namespace Tearc.ScrapingBot
             Stopwatch stw = new Stopwatch();
             stw.Start();
             // setup the browser
-            ScrapingBrowser Browser = new ScrapingBrowser();
-            Browser.AllowAutoRedirect = true; // Browser has many settings you can access in setup
-            Browser.AllowMetaRedirect = true;
-            //go to the home page
-            WebPage PageResult;
-            for (int i = NEWEST_ID; i <= NEWEST_ID - 100; i--)
-            {
-                var url = $"https://vozforums.com/showthread.php?t={i}";
-                logger.InfoFormat("start scraping: {0}", url);
-                PageResult = Browser.NavigateToPage(new Uri(url));
-                //HtmlNode TitleNode = PageResult.Html.CssSelect(".navbar-brand").First();
 
-                // get all comment nodes using XPATH
-                RemoveComment(PageResult.Html);
-
-                var navbars = PageResult.Html.CssSelect(".navbar");
-
-                string title = "";
-                if (navbars != null && navbars.Any())
-                {
-                    title = navbars.Last().InnerText.Trim();
-                    logger.Warn(title);
-                }
-
-                var rawPosts = PageResult.Html.CssSelect(".voz-post-message");
-
-                List<Post> Posts = new List<Post>();
-                foreach (var rawPost in rawPosts)
-                {
-                    Posts.Add(new Post(rawPost.InnerHtml));
-                }
-
-                if(!string.IsNullOrEmpty(title) && Posts.Any())
-                {
-                    repository.Create<Advert>(new Advert()
-                    {
-                        Title = title,
-                        URL = "https://vozforums.com/showthread.php?t=6134837",
-                        Posts = Posts
-                    });
-
-                }
-            }
+            Scrape(100, "https://vozforums.com/showthread.php");
             stw.Stop();
             logger.WarnFormat("Time elapsed: {0}", stw.Elapsed.Seconds);
         }
@@ -100,6 +59,64 @@ namespace Tearc.ScrapingBot
             System.Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine(text);
             System.Console.ForegroundColor = originalColor;
+        }
+
+        static void Scrape(int newestId, string baseUrl = "https://vozforums.com/showthread.php")
+        {
+            var degreeOfParallelism = Environment.ProcessorCount;
+            var tasks = new Task[degreeOfParallelism];
+
+            for (int taskNumber = 0; taskNumber < degreeOfParallelism; taskNumber++)
+            {
+                // capturing taskNumber in lambda wouldn't work correctly
+                int taskNumberCopy = taskNumber;
+
+                tasks[taskNumber] = Task.Factory.StartNew(
+                    () =>
+                    {
+                        ScrapingBrowser Browser = new ScrapingBrowser();
+                        Browser.AllowAutoRedirect = true; // Browser has many settings you can access in setup
+                        Browser.AllowMetaRedirect = true;
+                        WebPage PageResult;
+
+                        var max = newestId * (taskNumberCopy + 1) / degreeOfParallelism;
+                        for (int i = newestId * taskNumberCopy / degreeOfParallelism; i <= max; i++)
+                        {
+                            var url = $"{baseUrl}?t={i}";
+                            PageResult = Browser.NavigateToPage(new Uri(url));
+                            RemoveComment(PageResult.Html);
+                            var navbars = PageResult.Html.CssSelect(".navbar");
+
+                            string title = "";
+                            if (navbars != null && navbars.Any())
+                            {
+                                title = navbars.Last().InnerText.Trim();
+                                logger.Warn(title);
+                            }
+
+                            var rawPosts = PageResult.Html.CssSelect(".voz-post-message");
+
+                            List<Post> Posts = new List<Post>();
+                            foreach (var rawPost in rawPosts)
+                            {
+                                Posts.Add(new Post(rawPost.InnerHtml));
+                            }
+
+                            if (!string.IsNullOrEmpty(title) && Posts.Any())
+                            {
+                                repository.Create<Advert>(new Advert()
+                                {
+                                    Title = title,
+                                    URL = "https://vozforums.com/showthread.php?t=6134837",
+                                    Posts = Posts
+                                });
+
+                            }
+                        }
+                    });
+            }
+
+            Task.WaitAll(tasks);
         }
     }
 }
