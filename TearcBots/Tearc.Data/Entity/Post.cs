@@ -6,10 +6,14 @@ using System.Text;
 namespace Tearc.Data.Entity
 {
     //[Table("Comments")]
-    public class Comment : MongoEntity
+    public class Post : MongoEntity
     {
-        public Int64 AdvertID { get; set; }
-        public string Content { get; set; } = "Unknown Title";
+        public string Content { get; set; } = "Unknown Content";
         public virtual Author Author { get; set; } = new Author();
+        public Post() { }
+        public Post(string content)
+        {
+            this.Content = content;
+        }
     }
 }

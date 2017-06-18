@@ -20,7 +20,7 @@ namespace Tearc.Repository
             modelBuilder.Entity<Advert>().ToTable("Advert");
             modelBuilder.Entity<Author>().ToTable("Author");
             modelBuilder.Entity<Brand>().ToTable("Brand");
-            modelBuilder.Entity<Comment>().ToTable("Comment");
+            modelBuilder.Entity<Post>().ToTable("Comment");
             modelBuilder.Entity<ProductType>().ToTable("ProductType");
             modelBuilder.Entity<Source>().ToTable("Source");
         }

@@ -180,7 +180,7 @@
     <Compile Include="Entity\Author.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Brand.cs" />
-    <Compile Include="Entity\Comment.cs" />
+    <Compile Include="Entity\Post.cs" />
     <Compile Include="Entity\IMongoEntity.cs" />
     <Compile Include="Entity\MongoEntity.cs" />
     <Compile Include="Entity\ProductType.cs" />

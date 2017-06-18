@@ -203,7 +203,6 @@ namespace Tearc.CrawlingBot
             {
                 Title = title,
                 URL = URL,
-                Content = "TBD"
             });
         }
 
