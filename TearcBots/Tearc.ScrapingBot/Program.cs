@@ -21,7 +21,7 @@ namespace Tearc.ScrapingBot
     {
         static IRepository repository;
         static ILog logger = LogManager.GetLogger(typeof(Program));
-        const int NEWEST_ID = 1000;//6209153
+        const int NEWEST_ID = 6209153;//6209153
 
         static void Main(string[] args)
         {
@@ -30,7 +30,7 @@ namespace Tearc.ScrapingBot
             stw.Start();
             // setup the browser
 
-            Scrape(100, "https://vozforums.com/showthread.php");
+            Scrape(NEWEST_ID, 100, "https://vozforums.com/showthread.php");
             stw.Stop();
             logger.WarnFormat("Time elapsed: {0}", stw.Elapsed.Seconds);
         }
@@ -61,10 +61,11 @@ namespace Tearc.ScrapingBot
             System.Console.ForegroundColor = originalColor;
         }
 
-        static void Scrape(int newestId, string baseUrl = "https://vozforums.com/showthread.php")
+        static void Scrape(int newestId, int range, string baseUrl = "https://vozforums.com/showthread.php")
         {
             var degreeOfParallelism = Environment.ProcessorCount;
             var tasks = new Task[degreeOfParallelism];
+            int throttle = newestId - range;
 
             for (int taskNumber = 0; taskNumber < degreeOfParallelism; taskNumber++)
             {
@@ -79,8 +80,10 @@ namespace Tearc.ScrapingBot
                         Browser.AllowMetaRedirect = true;
                         WebPage PageResult;
 
-                        var max = newestId * (taskNumberCopy + 1) / degreeOfParallelism;
-                        for (int i = newestId * taskNumberCopy / degreeOfParallelism; i <= max; i++)
+                        var max = throttle + (newestId - throttle) * (taskNumberCopy + 1) / degreeOfParallelism;
+                        var min = throttle + (newestId - throttle) * (taskNumberCopy) / degreeOfParallelism;
+                        logger.InfoFormat("max-min:{0}-{1}",max, min);
+                        for (int i = min; i < max; i++)
                         {
                             var url = $"{baseUrl}?t={i}";
                             PageResult = Browser.NavigateToPage(new Uri(url));
